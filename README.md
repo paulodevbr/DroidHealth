@@ -1,4 +1,4 @@
-![](./droidHealth.png)DroidHealth
+![droidHealth_icon](./droidHealth.png) DroidHealth
 =========================================================
 Final project of Android Study Jam course, provided by Google Developers community.
 

@@ -1,11 +1,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:tabWidgetStyle">@style/tabStripColor</item>
+
     </style>
+
+    <style name="healthToolBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="titleTextColor">#FAFAFA</item>
+    </style>
+
+    <style name="tabStripColor" parent="android:Widget.ActionBar.TabBar">
+
+        <item name="colorAccent">@color/colorTabStrip</item>
+    </style>
+
+
 
 </resources>

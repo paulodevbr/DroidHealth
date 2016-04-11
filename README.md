@@ -4,7 +4,7 @@ Final project of Android Study Jam course, provided by Google Developers communi
 
 ###Author
 
-Me, Paulo de Oliveira Neto - pauloesgyn@gmail.com , Software Engineering student at [Universidade Federal de Goiás](https://www.ufg.br/)
+Paulo de Oliveira Neto - pauloesgyn@gmail.com , Software Engineering student at [Universidade Federal de Goiás](https://www.ufg.br/)
 
 ###Description
 

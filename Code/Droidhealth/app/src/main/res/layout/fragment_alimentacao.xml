@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.com.bugdroidbuilder.paulo.droidhealth.view.ExFisicoFragment">
+    tools:context=".view.calculator.CalcExFisicoFragment">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
@@ -55,19 +55,11 @@
             android:text="0"
             android:textSize="72sp"
             android:textColor="@color/colorAccent"
-            android:layout_below="@+id/imc_linear_layout"
+            android:layout_below="@+id/imb_linear_layout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32dp"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_menu_report_image"
-           />
+
 
     </RelativeLayout>
 

@@ -18,7 +18,7 @@ public final class CalcHealth {
         return verificaIMC(peso/Math.pow(altura, 2));
     }
     public String verificaIMC(Double imc){
-        String resultado;
+        String resultado = Double.toString(imc);
         if(imc < 17){
             return Double.toString(imc).substring(0,5) + "\n" +  MUITO_ABAIXO_DO_PESO;
         }else if(17 <= imc && imc <= 18.49){
@@ -28,12 +28,12 @@ public final class CalcHealth {
         }else if(25 <= imc && imc <= 29.99){
             return Double.toString(imc).substring(0,5) + "\n" + ACIMA_DO_PESO;
         }else if(30 <= imc && imc <= 34.99){
-            return Double.toString(imc).substring(0,5) + "\n" +  OBESIDADE;
+            return Double.toString(imc) + "\n" + OBESIDADE;
         }
         else if(35 <= imc && imc >= 39.99){
-            return Double.toString(imc) + OBESIDADE_SEVERA;
+            return Double.toString(imc).substring(0,5) + "\n" + OBESIDADE_SEVERA;
         }else{
-            return Double.toString(imc) + OBESIDADE_MORBIDA;
+            return Double.toString(imc).substring(0,5) + "\n" + OBESIDADE_MORBIDA;
         }
 
     }
@@ -54,10 +54,13 @@ public final class CalcHealth {
 
     }
     public String calcAgua(float peso){
-        try{
-            return Double.toString(peso * 0.035).substring(0,4) + " litros";
-        }catch(IndexOutOfBoundsException e){
-            return Double.toString(peso * 0.035).substring(0,3) + " litros";
+        String resultAgua = Double.toString(peso * 0.035);
+        if(resultAgua.length() >= 3){
+            return resultAgua.substring(0,3) + " litros";
+        }else if(resultAgua.length() == 2){
+            return resultAgua.substring(0,2) + " litros";
+        }else{
+            return resultAgua.substring(0,1) + " litros";
         }
 
     }

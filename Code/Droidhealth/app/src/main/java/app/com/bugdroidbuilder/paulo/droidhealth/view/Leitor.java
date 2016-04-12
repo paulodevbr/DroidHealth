@@ -20,6 +20,7 @@ public class Leitor {
         this.activity = activity;
     }
 
+    //Estrutura para verificar de qual fragment é o peso a ser lido
     public final float lerPeso(String tipo){
         EditText peso;
         switch(tipo){
@@ -35,10 +36,13 @@ public class Leitor {
             default:
                 peso = (EditText) activity.findViewById(R.id.imc_peso);
         }
+        //converte altura para float e retorna
         return Float.parseFloat(peso.getText().toString());
 
     }
 
+
+    //Estrutura para verificar de qual fragment é a altura a ser lida
     public final float lerAltura(String tipo){
         EditText altura ;
         switch(tipo){
@@ -51,6 +55,7 @@ public class Leitor {
             default:
                 altura = (EditText) activity.findViewById(R.id.imc_altura);
         }
+        //converte altura para float e retorna
         return Float.parseFloat(altura.getText().toString());
 
     }

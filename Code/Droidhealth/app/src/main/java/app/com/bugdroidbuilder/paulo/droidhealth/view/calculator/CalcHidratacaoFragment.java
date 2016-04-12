@@ -1,8 +1,5 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view;
+package app.com.bugdroidbuilder.paulo.droidhealth.view.calculator;
 
-import android.app.Activity;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
@@ -11,15 +8,16 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
 
 
-public class HidratacaoFragment extends Fragment {
+public class CalcHidratacaoFragment extends Fragment {
     private TextInputEditText edtPeso;
     private boolean pesoValido = false;
+    private final double MAX_PESO = 400;
+    private final double MIN_PESO = 30;
     private HealthController healthController = new HealthController(getActivity());
 
     @Override
@@ -41,8 +39,14 @@ public class HidratacaoFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() > 0){
-                   pesoValido = true;
+                if(s.length()>=2){
+                    if(Float.parseFloat(s.toString()) < MAX_PESO){
+
+                        if(Float.parseFloat(s.toString()) > MIN_PESO){
+                            pesoValido = true;
+                        }
+
+                    }
                 }else pesoValido = false;
 
                 if(pesoValido){

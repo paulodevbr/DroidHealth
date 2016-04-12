@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import app.com.bugdroidbuilder.paulo.droidhealth.view.calculator.CalcAlimentacaoFragment;
+import app.com.bugdroidbuilder.paulo.droidhealth.view.calculator.CalcExFisicoFragment;
+import app.com.bugdroidbuilder.paulo.droidhealth.view.calculator.CalcHidratacaoFragment;
+
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 
@@ -20,11 +24,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return new HidratacaoFragment();
+                return new CalcHidratacaoFragment();
             case 1:
-                return new AlimentacaoFragment();
+                return new CalcAlimentacaoFragment();
             case 2:
-                return new ExFisicoFragment();
+                return new CalcExFisicoFragment();
             default:
                 return null;
         }

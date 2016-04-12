@@ -1,4 +1,4 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view;
+package app.com.bugdroidbuilder.paulo.droidhealth.view.calculator;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,7 +12,7 @@ import app.com.bugdroidbuilder.paulo.droidhealth.R;
 
 
 
-public class AlimentacaoFragment extends Fragment {
+public class CalcAlimentacaoFragment extends Fragment {
 
 
     @Override

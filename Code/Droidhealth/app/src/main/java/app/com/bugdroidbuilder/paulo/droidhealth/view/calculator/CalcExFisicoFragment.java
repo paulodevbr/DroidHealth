@@ -1,4 +1,4 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view;
+package app.com.bugdroidbuilder.paulo.droidhealth.view.calculator;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -8,17 +8,18 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
-import app.com.bugdroidbuilder.paulo.droidhealth.model.CalcHealth;
 
-public class ExFisicoFragment extends Fragment {
+public class CalcExFisicoFragment extends Fragment {
 
     private boolean alturaValida = false;
     private boolean pesoValido = false;
+    private final double MAX_PESO = 400;
+    private final double MAX_ALTURA = 2.60;
+    private final double MIN_PESO = 30;
+    private final double MIN_ALTURA = 1;
     private HealthController healthController = new HealthController(getActivity());
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,18 +34,41 @@ public class ExFisicoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         TextInputEditText edtPeso = (TextInputEditText) getActivity().findViewById(R.id.imc_peso);
+        //Listener que verifica quando o campo peso é alterado
         edtPeso.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) {
-                    pesoValido = true;
-                } else pesoValido = false;
 
+                /* verifica se o peso é menor que o peso máximo e menor que o peso mínimo
+                 * e se o usuário entrou com 2 ou mais caracteres
+                 */
+                if(s.length()>=2){
+                    if(Float.parseFloat(s.toString()) < MAX_PESO){
+
+                        if(Float.parseFloat(s.toString()) > MIN_PESO){
+                            /* caso a entrada passe nas 3 verificações, o boolean pesoValido
+                            * é setado para verdadeiro
+                            */
+                            pesoValido = true;
+                        }
+
+                    }
+                    /* caso o usuário apague ou altere a entrada, e esta entrada não é válida
+                    * para as verificações anteriores, o boolean pesoValido se torna falso
+                    * novamente
+                    */
+                }else{
+                    pesoValido = false;
+
+                }
+
+                //Caso altura e peso são válidos, já é mostrado um resultado ao usuário
                 if (alturaValida && pesoValido) {
                     healthController.updateActivity(getActivity());
                     healthController.mostrarIMC();
@@ -68,9 +92,20 @@ public class ExFisicoFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int after) {
-                if (s.length() > 0) {
-                    alturaValida = true;
-                } else alturaValida = false;
+
+                //Mesmas verificações, só que no campo de altura
+                if(s.length()>=3){
+
+                    if(Float.parseFloat(s.toString()) < MAX_ALTURA){
+
+                        if(Float.parseFloat(s.toString()) > MIN_ALTURA) {
+                            alturaValida = true;
+                        }
+
+
+                    }
+                }else alturaValida = false;
+
 
                 if (alturaValida && pesoValido) {
                     healthController.updateActivity(getActivity());

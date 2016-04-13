@@ -3,6 +3,8 @@ package app.com.bugdroidbuilder.paulo.droidhealth.controller;
 import android.app.Activity;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.CalcHealth;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.Pessoa;
@@ -47,5 +49,9 @@ public class HealthController {
         TextView imcView = (TextView)this.activity.findViewById(R.id.imc_view);
         String imcString = this.calculator.calcIMC(this.leitor.lerPeso("imc"), this.leitor.lerAltura("imc"));
         imcView.setText(imcString);
+    }
+    public void mostrarIMB(){
+        TextView imbView = (TextView) this.activity.findViewById(R.id.imb_view);
+        //String imbString = this.calculator.calcIMB(this.leitor.lerPeso("imb"), this.leitor.lerAltura("imb"),)
     }
 }

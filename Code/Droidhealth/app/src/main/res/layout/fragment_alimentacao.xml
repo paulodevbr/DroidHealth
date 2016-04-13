@@ -26,6 +26,7 @@
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:inputType="numberDecimal"
+                    android:theme="@style/CalculatorTheme"
                     android:hint="@string/peso_name"
 
                     />
@@ -41,9 +42,26 @@
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:inputType="numberDecimal"
+                    android:theme="@style/CalculatorTheme"
                     android:hint="@string/altura_name"
                     />
             </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sexo"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="4dp" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/imb_sexo_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/CalculatorTheme"
+                >
+
+            </android.support.v7.widget.AppCompatSpinner>
 
 
 

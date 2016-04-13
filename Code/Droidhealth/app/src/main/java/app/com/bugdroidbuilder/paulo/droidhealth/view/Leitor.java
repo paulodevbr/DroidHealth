@@ -12,7 +12,6 @@ public class Leitor {
     private Activity activity;
 
 
-
     public Leitor(Activity activity) {
         this.activity = activity;
     }

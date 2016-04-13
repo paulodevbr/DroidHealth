@@ -11,15 +11,12 @@ import android.view.ViewGroup;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
+import app.com.bugdroidbuilder.paulo.droidhealth.model.CalcHealth;
 
 public class CalcExFisicoFragment extends Fragment {
 
     private boolean alturaValida = false;
     private boolean pesoValido = false;
-    private final double MAX_PESO = 400;
-    private final double MAX_ALTURA = 2.60;
-    private final double MIN_PESO = 30;
-    private final double MIN_ALTURA = 1;
     private HealthController healthController = new HealthController(getActivity());
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,9 +46,9 @@ public class CalcExFisicoFragment extends Fragment {
                  * e se o usuário entrou com 2 ou mais caracteres
                  */
                 if(s.length()>=2){
-                    if(Float.parseFloat(s.toString()) < MAX_PESO){
+                    if(Float.parseFloat(s.toString()) < CalcHealth.getMAX_PESO()){
 
-                        if(Float.parseFloat(s.toString()) > MIN_PESO){
+                        if(Float.parseFloat(s.toString()) > CalcHealth.getMIN_PESO()){
                             /* caso a entrada passe nas 3 verificações, o boolean pesoValido
                             * é setado para verdadeiro
                             */
@@ -96,9 +93,9 @@ public class CalcExFisicoFragment extends Fragment {
                 //Mesmas verificações, só que no campo de altura
                 if(s.length()>=3){
 
-                    if(Float.parseFloat(s.toString()) < MAX_ALTURA){
+                    if(Float.parseFloat(s.toString()) < CalcHealth.getMAX_ALTURA()){
 
-                        if(Float.parseFloat(s.toString()) > MIN_ALTURA) {
+                        if(Float.parseFloat(s.toString()) > CalcHealth.getMIN_ALTURA()) {
                             alturaValida = true;
                         }
 

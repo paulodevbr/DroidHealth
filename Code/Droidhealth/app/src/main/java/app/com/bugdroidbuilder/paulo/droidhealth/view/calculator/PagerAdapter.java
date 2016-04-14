@@ -1,4 +1,4 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view;
+package app.com.bugdroidbuilder.paulo.droidhealth.view.calculator;
 
 /**
  * Created by paulo on 05/04/16.

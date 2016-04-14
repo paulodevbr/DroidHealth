@@ -8,13 +8,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/CalculatorTheme">
-        <activity android:name=".view.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <activity
+            android:label="DroidHealth"
+            android:name=".view.calculator.CalcActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

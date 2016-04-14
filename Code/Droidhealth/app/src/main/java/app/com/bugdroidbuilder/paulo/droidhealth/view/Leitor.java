@@ -2,6 +2,7 @@ package app.com.bugdroidbuilder.paulo.droidhealth.view;
 
 import android.app.Activity;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 
@@ -20,7 +21,7 @@ public class Leitor {
     }
 
     //Estrutura para verificar de qual fragment é o peso a ser lido
-    public final float lerPeso(String tipo){
+    public int lerPeso(String tipo){
         EditText peso;
         switch(tipo){
             case "imc":
@@ -36,13 +37,13 @@ public class Leitor {
                 peso = (EditText) activity.findViewById(R.id.imc_peso);
         }
         //converte altura para float e retorna
-        return Float.parseFloat(peso.getText().toString());
+        return Integer.parseInt(peso.getText().toString());
 
     }
 
 
     //Estrutura para verificar de qual fragment é a altura a ser lida
-    public final float lerAltura(String tipo){
+    public int lerAltura(String tipo){
         EditText altura ;
         switch(tipo){
             case "imc":
@@ -55,9 +56,24 @@ public class Leitor {
                 altura = (EditText) activity.findViewById(R.id.imc_altura);
         }
         //converte altura para float e retorna
-        return Float.parseFloat(altura.getText().toString());
+        return Integer.parseInt(altura.getText().toString());
 
     }
-    //lerSexo(){}
+
+    public String lerSpinner(String tipo){
+        Spinner spinner;
+
+        switch(tipo){
+            case"sexo":
+                spinner = (Spinner) activity.findViewById(R.id.imb_sexo_spinner);
+                break;
+            case "exercicios":
+                spinner = (Spinner) activity.findViewById(R.id.freq_exercicios_spinner);
+                break;
+            default:
+                spinner = (Spinner) activity.findViewById(R.id.imb_sexo_spinner);
+        }
+        return spinner.getSelectedItem().toString();
+     }
     //lerQntExFisico(){}
 }

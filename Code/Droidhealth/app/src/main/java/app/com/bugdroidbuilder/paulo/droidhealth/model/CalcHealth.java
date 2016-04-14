@@ -4,10 +4,7 @@ package app.com.bugdroidbuilder.paulo.droidhealth.model;
  * Created by paulo on 02/04/16.
  */
 public final class CalcHealth {
-    private final double MAX_PESO = 400;
-    private final double MAX_ALTURA = 2.60;
-    private final double MIN_PESO = 30;
-    private final double MIN_ALTURA = 1;
+
 
 
     private final String MUITO_ABAIXO_DO_PESO = "Muito abaixo do peso";
@@ -19,8 +16,8 @@ public final class CalcHealth {
     private final String OBESIDADE_MORBIDA = "Obesidade mórbida";
 
 
-    public String calcIMC(float peso, float altura){
-        return verificaIMC(peso/Math.pow(altura, 2));
+    public String calcIMC(int peso, int altura){
+        return verificaIMC(peso/Math.pow((altura/100), 2));
     }
     public String verificaIMC(Double imc){
         String resultado = Double.toString(imc);
@@ -42,15 +39,15 @@ public final class CalcHealth {
         }
 
     }
-    public Double calcIMB(float peso, float altura, int idade, float qntExercicios, char sexo){
+    public double calcIMB(float peso, int altura, int idade, float qntExercicios, String sexo){
 
         switch(sexo){
 
-            case'M':
+            case"Masculino":
                 //Calcula IMB do sexo masculino
                 return 66 + (13.8 * peso) + (5 * altura) - (6.8 * idade) * qntExercicios;
 
-            case'F':
+            case"Feminino":
                 //Calcula IMB do sexo feminino
                 return 655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade) * qntExercicios;
             default:
@@ -58,7 +55,14 @@ public final class CalcHealth {
         }
 
     }
-    public String calcAgua(float peso){
+    /*public double verificaQntExercicios(String qntExercicios){
+
+        switch (qntExercicios){
+
+        }
+        return qntExercicios;
+    }*/
+    public String calcAgua(int peso){
         String resultAgua = Double.toString(peso * 0.035);
         return verificaTamanhoResultado(resultAgua) + " litros";
 
@@ -97,19 +101,4 @@ public final class CalcHealth {
 
     }
 
-    public static double getMAX_PESO() {
-        return MAX_PESO;
-    }
-
-    public static double getMAX_ALTURA() {
-        return MAX_ALTURA;
-    }
-
-    public static double getMIN_PESO() {
-        return MIN_PESO;
-    }
-
-    public static double getMIN_ALTURA() {
-        return MIN_ALTURA;
-    }
 }

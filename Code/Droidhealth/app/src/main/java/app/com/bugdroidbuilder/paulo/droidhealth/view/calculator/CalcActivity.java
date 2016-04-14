@@ -1,5 +1,6 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view;
+package app.com.bugdroidbuilder.paulo.droidhealth.view.calculator;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -9,17 +10,22 @@ import android.support.v7.widget.Toolbar;
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
 
-public class MainActivity extends AppCompatActivity{
-    HealthController healthController;
+/**
+ * Created by paulo on 13/04/16.
+ */
+public class CalcActivity extends AppCompatActivity{
 
+
+    HealthController healthController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.calc_activity);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+
 
         //Adiciona os ícones às tabs
         tabLayout.addTab(tabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.water_drop_icon_selected)));
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity{
                 }
                 viewPager.setCurrentItem(tab.getPosition());
             }
+
             //volta ao ícone alterior caso outra tab seja selecionada
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -67,19 +74,10 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
-    healthController = new HealthController(this);
+        healthController = new HealthController(this);
     }
 
-    public HealthController getHealthController() {
-        return healthController;
-    }
-
-    public static void main(String args){
+    public static void main(String args) {
 
     }
-
-
-
-
-
 }

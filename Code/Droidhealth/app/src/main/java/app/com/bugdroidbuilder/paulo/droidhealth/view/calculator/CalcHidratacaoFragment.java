@@ -14,10 +14,11 @@ import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
 
 
 public class CalcHidratacaoFragment extends Fragment {
+
+
     private TextInputEditText edtPeso;
     private boolean pesoValido = false;
-    private final double MAX_PESO = 400;
-    private final double MIN_PESO = 30;
+
     private HealthController healthController = new HealthController(getActivity());
 
     @Override
@@ -40,9 +41,12 @@ public class CalcHidratacaoFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()>=2){
-                    if(Float.parseFloat(s.toString()) < MAX_PESO){
+                    if(Float.parseFloat(s.toString()) < healthController.getMAX_PESO()){
 
-                        if(Float.parseFloat(s.toString()) > MIN_PESO){
+                        if(Float.parseFloat(s.toString()) > healthController.getMIN_PESO()){
+                            /* caso a entrada passe nas 3 verificações, o boolean pesoValido
+                            * é setado para verdadeiro
+                            */
                             pesoValido = true;
                         }
 

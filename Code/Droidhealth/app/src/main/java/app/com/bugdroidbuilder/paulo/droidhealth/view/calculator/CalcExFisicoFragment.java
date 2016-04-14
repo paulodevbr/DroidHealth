@@ -46,9 +46,9 @@ public class CalcExFisicoFragment extends Fragment {
                  * e se o usuário entrou com 2 ou mais caracteres
                  */
                 if(s.length()>=2){
-                    if(Float.parseFloat(s.toString()) < CalcHealth.getMAX_PESO()){
+                    if(Float.parseFloat(s.toString()) < healthController.getMAX_PESO()){
 
-                        if(Float.parseFloat(s.toString()) > CalcHealth.getMIN_PESO()){
+                        if(Float.parseFloat(s.toString()) > healthController.getMIN_PESO()){
                             /* caso a entrada passe nas 3 verificações, o boolean pesoValido
                             * é setado para verdadeiro
                             */
@@ -91,11 +91,11 @@ public class CalcExFisicoFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int after) {
 
                 //Mesmas verificações, só que no campo de altura
-                if(s.length()>=3){
+                if(s.length()==3){
 
-                    if(Float.parseFloat(s.toString()) < CalcHealth.getMAX_ALTURA()){
+                    if(Float.parseFloat(s.toString()) < healthController.getMAX_ALTURA()){
 
-                        if(Float.parseFloat(s.toString()) > CalcHealth.getMIN_ALTURA()) {
+                        if(Float.parseFloat(s.toString()) > healthController.getMIN_ALTURA()) {
                             alturaValida = true;
                         }
 

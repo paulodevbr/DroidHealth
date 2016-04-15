@@ -17,6 +17,7 @@ public class CalcExFisicoFragment extends Fragment {
 
     private boolean alturaValida = false;
     private boolean pesoValido = false;
+
     private HealthController healthController = new HealthController(getActivity());
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

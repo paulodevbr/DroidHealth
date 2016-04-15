@@ -1,11 +1,11 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view.calculator;
+package app.com.bugdroidbuilder.paulo.droidhealth.view;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.animation.AccelerateInterpolator;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
@@ -13,7 +13,7 @@ import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
 /**
  * Created by paulo on 13/04/16.
  */
-public class CalcActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity{
 
 
     HealthController healthController;
@@ -21,10 +21,10 @@ public class CalcActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.calc_activity);
+        setContentView(R.layout.main_activity);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
 
         //Adiciona os ícones às tabs

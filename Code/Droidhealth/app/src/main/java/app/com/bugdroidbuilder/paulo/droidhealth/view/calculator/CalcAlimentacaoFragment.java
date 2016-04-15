@@ -68,12 +68,11 @@ public class CalcAlimentacaoFragment extends Fragment {
 
                 }
 
-                //Caso altura e peso são válidos, já é mostrado um resultado ao usuário
-                if (alturaValida && pesoValido) {
+                //Caso altura, peso e idade são válidos, já é mostrado um resultado ao usuário
+                if (idadeValida && alturaValida && pesoValido) {
                     healthController.updateActivity(getActivity());
-                    healthController.mostrarIMC();
+                    healthController.mostrarIMB();
                 }
-
             }
 
             @Override
@@ -107,9 +106,9 @@ public class CalcAlimentacaoFragment extends Fragment {
                 }else alturaValida = false;
 
 
-                if (alturaValida && pesoValido) {
+                if (idadeValida && alturaValida && pesoValido) {
                     healthController.updateActivity(getActivity());
-                    healthController.mostrarIMC();
+                    healthController.mostrarIMB();
                 }
             }
 
@@ -118,7 +117,7 @@ public class CalcAlimentacaoFragment extends Fragment {
             }
         });
         TextInputEditText edtIdade = (TextInputEditText) getActivity().findViewById(R.id.imb_idade);
-        edtAltura.addTextChangedListener(new TextWatcher() {
+        edtIdade.addTextChangedListener(new TextWatcher() {
             //Mesmas verificações, mas no campo de idade -------------------------------------------------------------
 
             @Override
@@ -129,7 +128,7 @@ public class CalcAlimentacaoFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int after) {
 
-                if(s.length()==3){
+                if(s.length()>1){
 
                     if(Float.parseFloat(s.toString()) < healthController.getMAX_IDADE()){
 
@@ -142,10 +141,12 @@ public class CalcAlimentacaoFragment extends Fragment {
                 }else idadeValida = false;
 
 
-                if (alturaValida && pesoValido && idadeValida) {
-                    healthController.updateActivity(getActivity());
-                    healthController.mostrarIMC();
-                }
+
+                    if (idadeValida && alturaValida && pesoValido) {
+                        healthController.updateActivity(getActivity());
+                        healthController.mostrarIMB();
+                    }
+
             }
 
             @Override
@@ -164,10 +165,9 @@ public class CalcAlimentacaoFragment extends Fragment {
         spinnerSexo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-
-                }else if(position == 1){
-
+                if (idadeValida && alturaValida && pesoValido) {
+                    healthController.updateActivity(getActivity());
+                    healthController.mostrarIMB();
                 }
             }
 
@@ -189,10 +189,9 @@ public class CalcAlimentacaoFragment extends Fragment {
         spinnerExerc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-
-                }else if(position == 1){
-
+                if (idadeValida && alturaValida && pesoValido) {
+                    healthController.updateActivity(getActivity());
+                    healthController.mostrarIMB();
                 }
             }
 

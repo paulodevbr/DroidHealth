@@ -60,6 +60,15 @@ public class Leitor {
 
     }
 
+    // Procura a view EditText, requisita o texto inserido pelo usuário,
+    // transforma para int e retorna a idade
+    public int lerIdade(){
+        return Integer.parseInt(((EditText)activity.findViewById(R.id.imb_idade)).getText().toString());
+
+    }
+
+
+    // Lê qualquer Spinner do programa de acordo com o parâmetro passado
     public String lerSpinner(String tipo){
         Spinner spinner;
 
@@ -75,5 +84,5 @@ public class Leitor {
         }
         return spinner.getSelectedItem().toString();
      }
-    //lerQntExFisico(){}
+
 }

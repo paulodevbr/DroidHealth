@@ -12,8 +12,9 @@ import app.com.bugdroidbuilder.paulo.droidhealth.view.Leitor;
  * Created by paulo on 07/04/16.
  */
 public class HealthController {
-    private Pessoa pessoa = new Pessoa();
     private Activity activity;
+
+    private Pessoa usuario;
 
     private Leitor leitor;
     private CalcHealth calculator;
@@ -27,17 +28,10 @@ public class HealthController {
 
     public HealthController(Activity _activity){
         this.activity = _activity;
+        this.usuario = new Pessoa();
         this.leitor = new Leitor(_activity);
-        this.calculator = new CalcHealth();
-    }
+        this.calculator = new CalcHealth(usuario);
 
-    public Leitor getLeitor() {
-        return leitor;
-    }
-
-
-    public CalcHealth getCalculator() {
-        return calculator;
     }
 
     public void updateActivity(Activity _activity){
@@ -58,7 +52,11 @@ public class HealthController {
     }
     public void mostrarIMB(){
         TextView imbView = (TextView) this.activity.findViewById(R.id.imb_view);
-        //String imbString = this.calculator.calcIMB(this.leitor.lerPeso("imb"), this.leitor.lerAltura("imb"), this.leitor.lerIdade() , this.leitor.lerSpinner("sexo"), this.leitor.lerSpinner("exercicios"))
+        String imbString = this.calculator.calcIMB(this.leitor.lerPeso("imb"), this.leitor.lerAltura("imb"),
+                this.leitor.lerIdade() , this.leitor.lerSpinner("sexo"),
+                this.leitor.lerSpinner("exercicios"));
+        imbView.setText(imbString);
+
     }
     public int getMIN_ALTURA() {
         return MIN_ALTURA;

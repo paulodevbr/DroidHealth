@@ -13,7 +13,7 @@
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical" android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/imb_relative_layout">
+            android:id="@+id/hdr_relative_layout">
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical" android:layout_width="match_parent"
@@ -22,9 +22,9 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:id="@+id/imc_linear_layout">
+                android:id="@+id/hdr_linear_layout">
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/imc_overview"
+                    android:id="@+id/hdr_overview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hdr_overview"
@@ -72,7 +72,7 @@
                 android:text=""
                 android:textSize="56sp"
                 android:textColor="@color/colorAccent"
-                android:layout_below="@+id/imc_linear_layout"
+                android:layout_below="@+id/hdr_linear_layout"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="32dp"/>
 

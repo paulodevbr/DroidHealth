@@ -7,6 +7,7 @@ public final class CalcHealth {
 
 
 
+    private Pessoa usuario;
     private final String MUITO_ABAIXO_DO_PESO = "Muito abaixo do peso";
     private final String ABAIXO_DO_PESO = "Abaixo do peso";
     private final String NO_PESO = "Saudável";
@@ -15,59 +16,87 @@ public final class CalcHealth {
     private final String OBESIDADE_SEVERA = "Obesidade severa";
     private final String OBESIDADE_MORBIDA = "Obesidade mórbida";
 
-
-    public String calcIMC(int peso, int altura){
-        return verificaIMC(peso/Math.pow((altura/100), 2));
+    public CalcHealth(Pessoa _usuario){
+        this.usuario = _usuario;
     }
+
+    public String calcIMC(float peso, float altura){
+        //calcula IMC, divide altura por 100 porque na formula do IMC altura deve estar em metros
+        return verificaIMC(peso/(Math.pow((altura/100), 2)));
+    }
+
+
+    public int calcPesoIdeal(double imc){
+        //calcula peso ideal do usuario de acordo com o resultado do IMC
+        return (int)(Math.pow((this.usuario.getAltura()/100), 2) * 27);
+    }
+
+    // Verifica resultado do IMC e já concatena com uma string de feedback do resultado
     public String verificaIMC(Double imc){
         String resultado = Double.toString(imc);
         if(imc < 17){
-            return verificaTamanhoResultado(resultado) + "\n" +  MUITO_ABAIXO_DO_PESO;
+            return formataTamanhoResultado(resultado) + "\n" +  MUITO_ABAIXO_DO_PESO;
         }else if(17 <= imc && imc <= 18.49){
-            return verificaTamanhoResultado(resultado) + "\n" + ABAIXO_DO_PESO;
+            return formataTamanhoResultado(resultado) + "\n" + ABAIXO_DO_PESO;
         }else if(18.5 <= imc && imc <= 24.99){
-            return verificaTamanhoResultado(resultado) + "\n" + NO_PESO;
+            return formataTamanhoResultado(resultado) + "\n" + NO_PESO;
         }else if(25 <= imc && imc <= 29.99){
-            return verificaTamanhoResultado(resultado) + "\n" + ACIMA_DO_PESO;
+            return formataTamanhoResultado(resultado) + "\n" + ACIMA_DO_PESO;
         }else if(30 <= imc && imc <= 34.99){
-            return verificaTamanhoResultado(resultado) + "\n" + OBESIDADE;
+            return formataTamanhoResultado(resultado) + "\n" + OBESIDADE;
         }
         else if(35 <= imc && imc >= 39.99){
-            return verificaTamanhoResultado(resultado) + "\n" + OBESIDADE_SEVERA;
+            return formataTamanhoResultado(resultado) + "\n" + OBESIDADE_SEVERA;
         }else{
-            return verificaTamanhoResultado(resultado) + "\n" + OBESIDADE_MORBIDA;
+            return formataTamanhoResultado(resultado) + "\n" + OBESIDADE_MORBIDA;
         }
 
     }
-    public double calcIMB(float peso, int altura, int idade, float qntExercicios, String sexo){
+    public String calcIMB(float peso, float altura, float idade, String sexo, String qntExercString){
+        double qntExercicios = verificaQntExercicios(qntExercString);
 
         switch(sexo){
 
             case"Masculino":
                 //Calcula IMB do sexo masculino
-                return 66 + (13.8 * peso) + (5 * altura) - (6.8 * idade) * qntExercicios;
+                return formataTamanhoResultado(Double.toString((66 + (13.8 * peso) + (5 * altura) - (6.8 * idade)) * qntExercicios)) + " calorias";
 
             case"Feminino":
                 //Calcula IMB do sexo feminino
-                return 655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade) * qntExercicios;
+                return formataTamanhoResultado(Double.toString((655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade)) * qntExercicios))+ " calorias";
             default:
-                return 0.0000;
+                return Double.toString(0.00);
         }
 
     }
-    /*public double verificaQntExercicios(String qntExercicios){
-
-        switch (qntExercicios){
+    public double verificaQntExercicios(String qntExercString){
+        double valQntExerc;
+        switch (qntExercString){
+            case "Sedentário":
+                valQntExerc = 1.2;
+                break;
+            case "Exercícios leves (1 a 3 dias por semana)":
+                valQntExerc = 1.55;
+                break;
+            case "Exercícios intensos (6 a 7 dias por semana)":
+                valQntExerc = 1.725;
+                break;
+            case "Exercícios intensos diariamente":
+                valQntExerc =1.9;
+                break;
+            default:
+                valQntExerc = 0.2;// valor 0.2 para teste
+                break;
 
         }
-        return qntExercicios;
-    }*/
-    public String calcAgua(int peso){
+        return valQntExerc;
+    }
+    public String calcAgua(float peso){
         String resultAgua = Double.toString(peso * 0.035);
-        return verificaTamanhoResultado(resultAgua) + " litros";
+        return formataTamanhoResultado(resultAgua) + " litros";
 
     }
-    public String verificaTamanhoResultado(String resultado){
+    public String formataTamanhoResultado(String resultado){
         if(resultado.length()>5){
             resultado = resultado.substring(0,5);
         }
@@ -83,8 +112,9 @@ public final class CalcHealth {
                     case 1:
                         return resultado.substring(0,3);
                     default:
-                        return resultado.substring(0,3);
+                        break;
                 }
+                return resultado.substring(0,4);
             case 5:
                 switch (resultado.indexOf(".")){
                     case 2:
@@ -93,8 +123,9 @@ public final class CalcHealth {
                     case 1:
                         return resultado.substring(0,3);
                     default:
-                        return resultado.substring(0,3);
+                        break;
                 }
+                return resultado.substring(0,4);
 
             default: return resultado.substring(0,1);
         }

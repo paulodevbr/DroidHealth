@@ -1,11 +1,13 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.animation.AccelerateInterpolator;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
@@ -76,8 +78,33 @@ public class MainActivity extends AppCompatActivity{
         });
         healthController = new HealthController(this);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(this, ConfiguracoesActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+    }
     public static void main(String args) {
+
 
     }
 }

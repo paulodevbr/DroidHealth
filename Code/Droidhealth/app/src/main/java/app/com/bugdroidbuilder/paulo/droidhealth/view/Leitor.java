@@ -21,21 +21,11 @@ public class Leitor {
     }
 
     //Estrutura para verificar de qual fragment é o peso a ser lido
-    public int lerPeso(String tipo){
+    public int lerPeso(){
         EditText peso;
-        switch(tipo){
-            case "imc":
-                peso = (EditText) activity.findViewById(R.id.imc_peso);
-                break;
-            case "imb":
-                peso = (EditText) activity.findViewById(R.id.imb_peso);
-                break;
-            case "hdr":
-                peso = (EditText) activity.findViewById(R.id.hdr_peso);
-                break;
-            default:
-                peso = (EditText) activity.findViewById(R.id.imc_peso);
-        }
+
+        peso = (EditText) activity.findViewById(R.id.config_peso);
+
         //converte altura para float e retorna
         return Integer.parseInt(peso.getText().toString());
 
@@ -43,18 +33,9 @@ public class Leitor {
 
 
     //Estrutura para verificar de qual fragment é a altura a ser lida
-    public int lerAltura(String tipo){
+    public int lerAltura(){
         EditText altura ;
-        switch(tipo){
-            case "imc":
-                altura = (EditText) activity.findViewById(R.id.imc_altura);
-                break;
-            case "imb":
-                altura = (EditText) activity.findViewById(R.id.imb_altura);
-                break;
-            default:
-                altura = (EditText) activity.findViewById(R.id.imc_altura);
-        }
+        altura = (EditText) activity.findViewById(R.id.imc_altura);
         //converte altura para float e retorna
         return Integer.parseInt(altura.getText().toString());
 
@@ -63,7 +44,9 @@ public class Leitor {
     // Procura a view EditText, requisita o texto inserido pelo usuário,
     // transforma para int e retorna a idade
     public int lerIdade(){
-        return Integer.parseInt(((EditText)activity.findViewById(R.id.imb_idade)).getText().toString());
+        EditText idade;
+        idade = (EditText) activity.findViewById(R.id.config_idade);
+        return Integer.parseInt(idade.getText().toString());
 
     }
 
@@ -77,10 +60,10 @@ public class Leitor {
                 spinner = (Spinner) activity.findViewById(R.id.imb_sexo_spinner);
                 break;
             case "exercicios":
-                spinner = (Spinner) activity.findViewById(R.id.freq_exercicios_spinner);
+                spinner = (Spinner) activity.findViewById(R.id.config_exercicios_spinner);
                 break;
             default:
-                spinner = (Spinner) activity.findViewById(R.id.imb_sexo_spinner);
+                spinner = (Spinner) activity.findViewById(R.id.config_sexo_spinner);
         }
         return spinner.getSelectedItem().toString();
      }

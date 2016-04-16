@@ -20,11 +20,12 @@
 
     </style>
 
-    <style name="healthToolBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="healthToolBar" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="titleTextColor">#FAFAFA</item>
     </style>
+
 
     <style name="tabStripColor" parent="android:Widget.ActionBar.TabBar">
 

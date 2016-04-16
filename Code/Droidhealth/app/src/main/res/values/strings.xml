@@ -8,6 +8,7 @@
     <string name="idade_unit">anos</string>
     <string name="sexo">Sexo</string>
     <string name="freq_exercicios_name">Frequencia de exercícios</string>
+    <string name="title_configuracoes">Configuracoes</string>
 
     <string name="imc_overview">
         O Índice de Massa Corporal(IMC) é um cálculo que foi desenvolvido com o objetivo de saber rapidamente o peso ideal de uma pessoa.
@@ -21,6 +22,8 @@
     <string name="hdr_overview">
         Cálculo do consumo de água diário: pode variar caso a pessoa pratique exercícios físicos.
     </string>
+
+
 
     <string-array name="imb_sexo_array">
         <item>Masculino</item>

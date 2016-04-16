@@ -8,9 +8,6 @@ import app.com.bugdroidbuilder.paulo.droidhealth.model.CalcHealth;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.Pessoa;
 import app.com.bugdroidbuilder.paulo.droidhealth.view.Leitor;
 
-/**
- * Created by paulo on 07/04/16.
- */
 public class HealthController {
     private Activity activity;
 
@@ -42,17 +39,17 @@ public class HealthController {
 
     public void mostrarHDR(){
         TextView hdrView = (TextView)this.activity.findViewById(R.id.hdr_view);
-        String hdrString = this.calculator.calcAgua(this.leitor.lerPeso("hdr"));
+        String hdrString = this.calculator.calcAgua(this.leitor.lerPeso());
         hdrView.setText(hdrString);
     }
     public void mostrarIMC(){
         TextView imcView = (TextView)this.activity.findViewById(R.id.imc_view);
-        String imcString = this.calculator.calcIMC(this.leitor.lerPeso("imc"), this.leitor.lerAltura("imc"));
+        String imcString = this.calculator.calcIMC(this.leitor.lerPeso(), this.leitor.lerAltura());
         imcView.setText(imcString);
     }
     public void mostrarIMB(){
         TextView imbView = (TextView) this.activity.findViewById(R.id.imb_view);
-        String imbString = this.calculator.calcIMB(this.leitor.lerPeso("imb"), this.leitor.lerAltura("imb"),
+        String imbString = this.calculator.calcIMB(this.leitor.lerPeso(), this.leitor.lerAltura(),
                 this.leitor.lerIdade() , this.leitor.lerSpinner("sexo"),
                 this.leitor.lerSpinner("exercicios"));
         imbView.setText(imbString);

@@ -4,79 +4,86 @@ package app.com.bugdroidbuilder.paulo.droidhealth.model;
  * Created by paulo on 02/04/16.
  */
 public class Pessoa {
-    private float peso;
-    private float altura;
-    private int idade;
-    private char sexo;
-
-    private double qntAgua;
-    private float IMC;
-    private double IMB;
-    private float qntExecicios;
-
-    public float getQntExecicios() {
-        return qntExecicios;
-    }
-
-    public void setQntExecicios(float qntExecicios) {
-        this.qntExecicios = qntExecicios;
-    }
-
-    public double getQntAgua() {
-        return qntAgua;
-    }
-
-    public void setQntAgua(double qntAgua) {
-        this.qntAgua = qntAgua;
-    }
-
-    public float getIMC() {
-        return IMC;
-    }
-
-    public void setIMC(float IMC) {
-        this.IMC = IMC;
-    }
-
-    public double getIMB() {
-        return IMB;
-    }
-
-    public void setIMB(double IMB) {
-        this.IMB = IMB;
-    }
+    private static float peso;
+    private static float altura;
+    private static int idade;
+    private static String sexo;
+    private static String qntExFisico;
+    private static String qntAgua;
+    private static String IMC;
+    private static String IMB;
+    private static int pesoIdeal;
 
 
-
-    public float getPeso() {
+    public static float getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
-        this.peso = peso;
+    public static void setPeso(float peso) {
+        Pessoa.peso = peso;
     }
 
-    public float getAltura() {
+    public static float getAltura() {
         return altura;
     }
 
-    public void setAltura(float altura) {
-        this.altura = altura;
+    public static void setAltura(float altura) {
+        Pessoa.altura = altura;
     }
 
-    public int getIdade() {
+    public static int getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public static void setIdade(int idade) {
+        Pessoa.idade = idade;
     }
 
-    public char getSexo() {
+    public static String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
+    public static void setSexo(String sexo) {
+        Pessoa.sexo = sexo;
+    }
+
+    public static String getQntExFisico() {
+        return qntExFisico;
+    }
+
+    public static void setQntExFisico(String qntExFisico) {
+        Pessoa.qntExFisico = qntExFisico;
+    }
+
+    public static String getQntAgua() {
+        return qntAgua;
+    }
+
+    public static void setQntAgua(String qntAgua) {
+        Pessoa.qntAgua = qntAgua;
+    }
+
+    public static String getIMC() {
+        return IMC;
+    }
+
+    public static void setIMC(String IMC) {
+        Pessoa.IMC = IMC;
+    }
+
+    public static String getIMB() {
+        return IMB;
+    }
+
+    public static void setIMB(String IMB) {
+        Pessoa.IMB = IMB;
+    }
+
+    public static int getPesoIdeal() {
+        return pesoIdeal;
+    }
+
+    public static void setPesoIdeal(int pesoIdeal) {
+        Pessoa.pesoIdeal = pesoIdeal;
     }
 }

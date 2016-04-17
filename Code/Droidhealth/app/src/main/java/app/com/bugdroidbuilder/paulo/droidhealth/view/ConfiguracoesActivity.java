@@ -1,6 +1,5 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.view;
 
-import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.widget.Spinner;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
+import app.com.bugdroidbuilder.paulo.droidhealth.model.Pessoa;
 
 public class ConfiguracoesActivity extends AppCompatActivity{
 
@@ -56,9 +56,9 @@ public class ConfiguracoesActivity extends AppCompatActivity{
                  * e se o usuário entrou com 2 ou mais caracteres
                  */
                 if(s.length()>=2){
-                    if(Float.parseFloat(s.toString()) < healthController.getMAX_PESO()){
+                    if(Integer.parseInt(s.toString()) < healthController.getMAX_PESO()){
 
-                        if(Float.parseFloat(s.toString()) > healthController.getMIN_PESO()){
+                        if(Integer.parseInt(s.toString()) > healthController.getMIN_PESO()){
                             /* caso a entrada passe nas 3 verificações, o boolean pesoValido
                             * é setado para verdadeiro
                             */
@@ -73,6 +73,10 @@ public class ConfiguracoesActivity extends AppCompatActivity{
                 }else{
                     pesoValido = false;
 
+                }
+                if(pesoValido = true){
+                    Pessoa.setPeso(Integer.parseInt(s.toString()));
+                    HealthController.setPesoExists(pesoValido);
                 }
 
             }
@@ -97,15 +101,20 @@ public class ConfiguracoesActivity extends AppCompatActivity{
 
                 if(s.length()==3){
 
-                    if(Float.parseFloat(s.toString()) < healthController.getMAX_ALTURA()){
+                    if(Integer.parseInt(s.toString()) < healthController.getMAX_ALTURA()){
 
-                        if(Float.parseFloat(s.toString()) > healthController.getMIN_ALTURA()) {
+                        if(Integer.parseInt(s.toString()) > healthController.getMIN_ALTURA()) {
                             alturaValida = true;
                         }
 
 
                     }
                 }else alturaValida = false;
+
+                if(alturaValida = true){
+                    Pessoa.setAltura(Integer.parseInt(s.toString()));
+                    HealthController.setAlturaExists(alturaValida);
+                }
 
             }
 
@@ -127,9 +136,9 @@ public class ConfiguracoesActivity extends AppCompatActivity{
 
                 if(s.length()>1){
 
-                    if(Float.parseFloat(s.toString()) < healthController.getMAX_IDADE()){
+                    if(Integer.parseInt(s.toString()) < healthController.getMAX_IDADE()){
 
-                        if(Float.parseFloat(s.toString()) > healthController.getMIN_IDADE()) {
+                        if(Integer.parseInt(s.toString()) > healthController.getMIN_IDADE()) {
                             idadeValida = true;
                         }
 
@@ -137,14 +146,17 @@ public class ConfiguracoesActivity extends AppCompatActivity{
                     }
                 }else idadeValida = false;
 
-
+                if(idadeValida = true){
+                    Pessoa.setIdade(Integer.parseInt(s.toString()));
+                    HealthController.setIdadeExists(idadeValida);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
             }
         });
-        Spinner spinnerSexo = (Spinner) findViewById(R.id.config_sexo_spinner);
+        final Spinner spinnerSexo = (Spinner) findViewById(R.id.config_sexo_spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.imb_sexo_array, android.R.layout.simple_spinner_item);
@@ -156,10 +168,7 @@ public class ConfiguracoesActivity extends AppCompatActivity{
         spinnerSexo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (idadeValida && alturaValida && pesoValido) {
-                    healthController.updateActivity(getParent());
-                    healthController.mostrarIMB();
-                }
+                Pessoa.setSexo(spinnerSexo.getSelectedItem().toString());
             }
 
             @Override
@@ -168,7 +177,7 @@ public class ConfiguracoesActivity extends AppCompatActivity{
             }
         });
 
-        Spinner spinnerExerc = (Spinner) findViewById(R.id.config_exercicios_spinner);
+        final Spinner spinnerExerc = (Spinner) findViewById(R.id.config_exercicios_spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         arrayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.freq_exerc_array, android.R.layout.simple_spinner_item);
@@ -180,10 +189,7 @@ public class ConfiguracoesActivity extends AppCompatActivity{
         spinnerExerc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (idadeValida && alturaValida && pesoValido) {
-                    healthController.updateActivity(getParent());
-                    healthController.mostrarIMB();
-                }
+                Pessoa.setSexo(spinnerExerc.getSelectedItem().toString());
             }
 
             @Override

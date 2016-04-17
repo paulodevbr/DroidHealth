@@ -7,7 +7,7 @@ public final class CalcHealth {
 
 
 
-    private Pessoa usuario;
+
     private final String MUITO_ABAIXO_DO_PESO = "Muito abaixo do peso";
     private final String ABAIXO_DO_PESO = "Abaixo do peso";
     private final String NO_PESO = "Saudável";
@@ -16,23 +16,24 @@ public final class CalcHealth {
     private final String OBESIDADE_SEVERA = "Obesidade severa";
     private final String OBESIDADE_MORBIDA = "Obesidade mórbida";
 
-    public CalcHealth(Pessoa _usuario){
-        this.usuario = _usuario;
-    }
-
-    public String calcIMC(float peso, float altura){
+    public String calcIMC(){
         //calcula IMC, divide altura por 100 porque na formula do IMC altura deve estar em metros
-        return verificaIMC(peso/(Math.pow((altura/100), 2)));
+        float peso = Pessoa.getPeso();
+        float altura = Pessoa.getAltura();
+        Pessoa.setIMC(retornaResultIMC(peso/(Math.pow((altura/100), 2))));
+        return Pessoa.getIMC();
     }
 
 
     public int calcPesoIdeal(double imc){
         //calcula peso ideal do usuario de acordo com o resultado do IMC
-        return (int)(Math.pow((this.usuario.getAltura()/100), 2) * 27);
+        Pessoa.setPesoIdeal(Integer.parseInt(Double.toString(Math.pow((Pessoa.getAltura()/100), 2) * 27)));
+        return Pessoa.getPesoIdeal();
     }
 
     // Verifica resultado do IMC e já concatena com uma string de feedback do resultado
-    public String verificaIMC(Double imc){
+    public String retornaResultIMC(double imc){
+
         String resultado = Double.toString(imc);
         if(imc < 17){
             return formataTamanhoResultado(resultado) + "\n" +  MUITO_ABAIXO_DO_PESO;
@@ -52,8 +53,13 @@ public final class CalcHealth {
         }
 
     }
-    public String calcIMB(float peso, float altura, float idade, String sexo, String qntExercString){
-        double qntExercicios = verificaQntExercicios(qntExercString);
+    public String calcIMB(){
+        float peso = Pessoa.getPeso();
+        float altura = Pessoa.getAltura();
+        float idade = Pessoa.getIdade();
+        String sexo = Pessoa.getSexo();
+
+        double qntExercicios = verificaQntExercicios();
 
         switch(sexo){
 
@@ -69,7 +75,8 @@ public final class CalcHealth {
         }
 
     }
-    public double verificaQntExercicios(String qntExercString){
+    public double verificaQntExercicios() {
+        String qntExercString = Pessoa.getQntExFisico();
         double valQntExerc;
         switch (qntExercString){
             case "Sedentário":
@@ -91,7 +98,8 @@ public final class CalcHealth {
         }
         return valQntExerc;
     }
-    public String calcAgua(float peso){
+    public String calcAgua(){
+        float peso = Pessoa.getPeso();
         String resultAgua = Double.toString(peso * 0.035);
         return formataTamanhoResultado(resultAgua) + " litros";
 

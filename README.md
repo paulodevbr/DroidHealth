@@ -8,4 +8,4 @@ Paulo de Oliveira Neto - pauloesgyn@gmail.com , Software Engineering student at 
 
 ###Description
 
-DroidHealth is an Android application with the main idea of teaching the user how to be healthy just following simple advices. These advices are related to physical activities, sleepness, healthy eating, and hydration.
+DroidHealth is an Android application with the main idea of teaching the user how to be healthy. The user just have to follow simple advices: related to physical activities, sleepness, healthy eating, and hydration.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sexo">Sexo</string>
+
+    <string-array name="imb_sexo_array">
+        <item>Masculino</item>
+        <item>Feminino</item>
+    </string-array>
+
+    <string name="freq_exercicios_name">Frequencia de exercícios</string>
+
+    <string-array name="freq_exerc_array">
+        <item>Sedentário</item>
+        <item>Exercícios leves (1 a 3 dias por semana)</item>
+        <item>Exercícios intensos (6 a 7 dias por semana)</item>
+        <item>Exercícios intensos diariamente</item>
+    </string-array>
+</resources>

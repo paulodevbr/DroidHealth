@@ -3,7 +3,7 @@
     <color name="colorPrimary">#00BCD4</color>
     <color name="colorPrimaryDark">#0097A7</color>
     <color name="colorAccent">#8BC34A</color>
-    <color name="colorTitleText">#9e9e9e</color>
+    <color name="colorTitleText">#FAFAFA</color>
     <color name="colorTabStrip">#FAFAFA</color>
 
 </resources>

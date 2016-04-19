@@ -10,10 +10,15 @@ public class Pessoa {
     private static String sexo;
     private static String qntExFisico;
     private static String qntAgua;
-    private static String IMC;
+    private static float IMC;
     private static String IMB;
     private static int pesoIdeal;
     private static int difPesoIdeal;
+
+    private static String pesoString = "";
+    private static String alturaString = "";
+    private static String imcString;
+
 
 
     public static float getPeso() {
@@ -21,7 +26,8 @@ public class Pessoa {
     }
 
     public static void setPeso(float peso) {
-        Pessoa.peso = peso;
+        Pessoa.peso = (int)peso;
+        Pessoa.pesoString = "Peso: " + Pessoa.peso + " Kg";
     }
 
     public static float getAltura() {
@@ -29,7 +35,8 @@ public class Pessoa {
     }
 
     public static void setAltura(float altura) {
-        Pessoa.altura = altura;
+        Pessoa.altura = (int)altura;
+        Pessoa.alturaString = "Altura: " + Pessoa.altura + " cm";
     }
 
     public static int getIdade() {
@@ -61,14 +68,14 @@ public class Pessoa {
     }
 
     public static void setQntAgua(String qntAgua) {
-        Pessoa.qntAgua = qntAgua;
+        Pessoa.qntAgua = "Consumo de água recomendado: " + qntAgua + " litros/dia";
     }
 
-    public static String getIMC() {
+    public static float getIMC() {
         return IMC;
     }
 
-    public static void setIMC(String IMC) {
+    public static void setIMC(float IMC) {
         Pessoa.IMC = IMC;
     }
 
@@ -77,7 +84,7 @@ public class Pessoa {
     }
 
     public static void setIMB(String IMB) {
-        Pessoa.IMB = IMB;
+        Pessoa.IMB = "Gasto de kcal: "+ IMB+"/dia";
     }
 
     public static int getPesoIdeal() {
@@ -88,11 +95,27 @@ public class Pessoa {
         Pessoa.pesoIdeal = pesoIdeal;
     }
 
+    public static String getImcString() {
+        return imcString;
+    }
+
+    public static void setImcString(String imcString) {
+        Pessoa.imcString = imcString;
+    }
+
     public static void setDifPesoIdeal(int dif) {
         Pessoa.difPesoIdeal = dif;
     }
 
     public static int getDifPesoIdeal() {
         return difPesoIdeal;
+    }
+
+    public static String getPesoString() {
+        return pesoString;
+    }
+
+    public static String getAlturaString() {
+        return alturaString;
     }
 }

@@ -1,36 +1,31 @@
 <resources>
 
-    <style name="DroidHealthTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:tabWidgetStyle">@style/tabStripColor</item>
+        
 
     </style>
 
-
-    <!-- Tema da calculadora -->
-    <style name="CalculatorTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="healthToolBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:tabWidgetStyle">@style/tabStripColor</item>
-
-    </style>
-
-    <style name="healthToolBar" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="titleTextColor">#FAFAFA</item>
+        <item name="titleTextColor">@color/colorTitleText</item>
+        <item name="android:tabWidgetStyle">@style/tabStyle</item>
     </style>
 
 
-    <style name="tabStripColor" parent="android:Widget.ActionBar.TabBar">
-        <item name="titleTextColor">@color/colorTabStrip</item>
+    <style name="tabStyle" parent="Widget.Design.TabLayout">
+        <item name="android:textAppearanceButton">@style/textAppearanceTab</item>
         <item name="colorAccent">@color/colorTabStrip</item>
     </style>
+
+    <style name="textAppearanceTab" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">@color/colorTitleText</item>
+    </style>
+
 
 
 

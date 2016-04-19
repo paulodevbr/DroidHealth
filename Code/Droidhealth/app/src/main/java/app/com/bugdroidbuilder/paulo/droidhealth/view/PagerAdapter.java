@@ -7,9 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import app.com.bugdroidbuilder.paulo.droidhealth.view.calculator.CalcAlimentacaoFragment;
-import app.com.bugdroidbuilder.paulo.droidhealth.view.calculator.CalcExFisicoFragment;
-import app.com.bugdroidbuilder.paulo.droidhealth.view.calculator.CalcHidratacaoFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;

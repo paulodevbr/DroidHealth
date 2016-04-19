@@ -6,9 +6,11 @@
     <string name="altura_unit">cm</string>
     <string name="idade_name">Idade</string>
     <string name="idade_unit">anos</string>
-    <string name="sexo">Sexo</string>
-    <string name="freq_exercicios_name">Frequencia de exercícios</string>
-    <string name="title_configuracoes">Configuracoes</string>
+
+
+    <string name="title_configuracoes">Configurações</string>
+    <string name="title_informação">Informação</string>
+
 
     <string name="imc_overview">
         O Índice de Massa Corporal(IMC) é um cálculo que foi desenvolvido com o objetivo de saber rapidamente o peso ideal de uma pessoa.
@@ -24,18 +26,8 @@
     </string>
 
 
-    <string-array name="imb_sexo_array">
-        <item>Masculino</item>
-        <item>Feminino</item>
-    </string-array>
 
 
-    <string-array name="freq_exerc_array">
-        <item>Sedentário</item>
-        <item>Exercícios leves (1 a 3 dias por semana)</item>
-        <item>Exercícios intensos (6 a 7 dias por semana)</item>
-        <item>Exercícios intensos diariamente</item>
-    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

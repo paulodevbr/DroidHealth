@@ -23,8 +23,9 @@ public final class CalcHealth {
         double imc = peso/(Math.pow((altura/100), 2));
         // já calcula o peso ideal e o armazena na classe Pessoa
         Pessoa.setDifPesoIdeal(calcKgParaPesoIdeal(imc));
-        Pessoa.setIMC(retornaResultIMC(imc));
-        return Pessoa.getIMC();
+        Pessoa.setIMC((float)imc);
+        Pessoa.setImcString(retornaResultIMC(imc));
+        return Float.toString(Pessoa.getIMC());
     }
 
 
@@ -41,20 +42,20 @@ public final class CalcHealth {
 
         String resultado = Double.toString(imc);
         if(imc < 17){
-            return formataTamanhoResultado(resultado) + "\n" +  MUITO_ABAIXO_DO_PESO;
+            return MUITO_ABAIXO_DO_PESO;
         }else if(17 <= imc && imc <= 18.49){
-            return formataTamanhoResultado(resultado) + "\n" + ABAIXO_DO_PESO;
+            return ABAIXO_DO_PESO;
         }else if(18.5 <= imc && imc <= 24.99){
-            return formataTamanhoResultado(resultado) + "\n" + NO_PESO;
+            return NO_PESO;
         }else if(25 <= imc && imc <= 29.99){
-            return formataTamanhoResultado(resultado) + "\n" + ACIMA_DO_PESO;
+            return ACIMA_DO_PESO;
         }else if(30 <= imc && imc <= 34.99){
-            return formataTamanhoResultado(resultado) + "\n" + OBESIDADE;
+            return  OBESIDADE;
         }
         else if(35 <= imc && imc >= 39.99){
-            return formataTamanhoResultado(resultado) + "\n" + OBESIDADE_SEVERA;
+            return OBESIDADE_SEVERA;
         }else{
-            return formataTamanhoResultado(resultado) + "\n" + OBESIDADE_MORBIDA;
+            return OBESIDADE_MORBIDA;
         }
 
     }
@@ -63,18 +64,22 @@ public final class CalcHealth {
         float altura = Pessoa.getAltura();
         float idade = Pessoa.getIdade();
         String sexo = Pessoa.getSexo();
-
+        String imb;
         double qntExercicios = verificaQntExercicios();
 
         switch(sexo){
 
             case"Masculino":
                 //Calcula IMB do sexo masculino
-                return formataTamanhoResultado(Double.toString((66 + (13.8 * peso) + (5 * altura) - (6.8 * idade)) * qntExercicios)) + " calorias";
+                imb = formataTamanhoResultado(Double.toString((66 + (13.8 * peso) + (5 * altura) - (6.8 * idade)) * qntExercicios)) + " calorias";
+                Pessoa.setIMB(imb);
+                return Pessoa.getIMB();
 
             case"Feminino":
                 //Calcula IMB do sexo feminino
-                return formataTamanhoResultado(Double.toString((655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade)) * qntExercicios))+ " calorias";
+                imb = formataTamanhoResultado(Double.toString((655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade)) * qntExercicios))+ " calorias";
+                Pessoa.setIMB(imb);
+                return Pessoa.getIMB();
             default:
                 return Double.toString(0.00);
         }
@@ -106,7 +111,8 @@ public final class CalcHealth {
     public String calcAgua(){
         float peso = Pessoa.getPeso();
         String resultAgua = Double.toString(peso * 0.035);
-        return formataTamanhoResultado(resultAgua) + " litros";
+        Pessoa.setQntAgua(formataTamanhoResultado(resultAgua));
+        return Pessoa.getQntAgua();
 
     }
     public String formataTamanhoResultado(String resultado){

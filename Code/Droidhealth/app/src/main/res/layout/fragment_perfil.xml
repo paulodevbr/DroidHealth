@@ -1,0 +1,83 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.PerfilFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/imc_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saudável"
+                android:layout_marginTop="16dp"
+                android:textSize="40sp"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/colorTitleText">
+        </FrameLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/altura_text_view"
+                android:text="Altura: 180 cm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:textSize="16dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/peso_text_view"
+                android:text="Peso: 76kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="16dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/qnt_agua_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantidade de água"
+                android:layout_marginBottom="8dp"
+                android:textSize="16dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/qnt_calorias_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calorias"
+                android:textSize="16dp"/>
+
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

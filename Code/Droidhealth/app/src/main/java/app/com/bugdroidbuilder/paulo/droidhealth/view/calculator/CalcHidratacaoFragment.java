@@ -54,7 +54,7 @@ public class CalcHidratacaoFragment extends Fragment {
                 }else pesoValido = false;
 
                 if(pesoValido){
-                    healthController.updateActivity(getActivity());
+                    //healthController.updateActivity(getActivity());
                     healthController.mostrarHDR();
                 }
             }

@@ -30,9 +30,8 @@ public class MainActivity extends AppCompatActivity{
 
 
         //Adiciona os ícones às tabs
-        tabLayout.addTab(tabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.water_drop_icon_selected)));
-        tabLayout.addTab(tabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.food_icon)));
-        tabLayout.addTab(tabLayout.newTab().setIcon(getResources().getDrawable(R.drawable.fitness_icon)));
+        tabLayout.addTab(tabLayout.newTab().setText("Perfil"));
+        tabLayout.addTab(tabLayout.newTab().setText("Dicas"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -41,34 +40,15 @@ public class MainActivity extends AppCompatActivity{
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            //Altera para um ícone mais claro na tab selecionada, e altera o título da toobar
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                if (tab.getPosition() == 0) {
-                    tab.setIcon(getResources().getDrawable(R.drawable.water_drop_icon_selected));
-                    toolbar.setTitle("Hidratação diária");
-                } else if (tab.getPosition() == 1) {
-                    tab.setIcon(getResources().getDrawable(R.drawable.food_icon_selected));
-                    toolbar.setTitle("Gasto de calorias diário");
-                } else if (tab.getPosition() == 2) {
-                    tab.setIcon(getResources().getDrawable(R.drawable.fitness_icon_selected));
-                    toolbar.setTitle("Índice de massa corporal");
-                }
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
-            //volta ao ícone alterior caso outra tab seja selecionada
+
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
-                if (tab.getPosition() == 0) {
-                    tab.setIcon(getResources().getDrawable(R.drawable.water_drop_icon));
-                } else if (tab.getPosition() == 1) {
-                    tab.setIcon(getResources().getDrawable(R.drawable.food_icon));
-                } else if (tab.getPosition() == 2) {
-                    tab.setIcon(getResources().getDrawable(R.drawable.fitness_icon));
-                }
             }
 
             @Override
@@ -101,6 +81,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onResume(){
         super.onResume();
+        healthController.mostrarResumo();
 
     }
     public static void main(String args) {

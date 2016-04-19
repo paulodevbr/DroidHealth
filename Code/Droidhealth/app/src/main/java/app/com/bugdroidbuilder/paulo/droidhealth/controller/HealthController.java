@@ -5,18 +5,18 @@ import android.widget.TextView;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.CalcHealth;
-import app.com.bugdroidbuilder.paulo.droidhealth.view.Leitor;
+import app.com.bugdroidbuilder.paulo.droidhealth.model.Pessoa;
 
 public class HealthController {
-    private Activity activity;
+    private Activity perfilActivity;
 
 
-    private Leitor leitor;
     private CalcHealth calculator;
 
     private final int MAX_PESO = 400;
     private final int MAX_ALTURA = 260;
     private final int MIN_PESO = 30;
+
     private final int MIN_ALTURA = 100;
     private final int MAX_IDADE = 120;
     private final int MIN_IDADE = 5;
@@ -25,42 +25,50 @@ public class HealthController {
     private static boolean idadeExists = false;
 
     public HealthController(Activity _activity){
-        this.activity = _activity;
-        this.leitor = new Leitor(_activity);
+        this.perfilActivity = _activity;
         this.calculator = new CalcHealth();
-
     }
 
-    public void updateActivity(Activity _activity){
-        this.activity = _activity;
-        this.leitor.updateActivity(_activity);
-    }
+
 
     public void mostrarResumo(){
+
         if(pesoExists){
             mostrarHDR();
             if(alturaExists){
                 mostrarIMC();
                 if(idadeExists){
-                    mostrarIMB();
+                      mostrarIMB();
                 }
             }
         }
     }
 
 
-    private void mostrarHDR(){
-        TextView hdrView = (TextView)this.activity.findViewById(R.id.hdr_view);
+    public void mostrarHDR(){
+        mostrarPeso();
+        TextView hdrView = (TextView) perfilActivity.findViewById(R.id.qnt_agua_text_view);
         String hdrString = this.calculator.calcAgua();
         hdrView.setText(hdrString);
     }
-    private void mostrarIMC(){
-        TextView imcView = (TextView)this.activity.findViewById(R.id.imc_view);
+    public void mostrarIMC(){
+        mostrarAltura();
+        TextView imcView = (TextView) perfilActivity.findViewById(R.id.imc_text_view);
         String imcString = this.calculator.calcIMC();
         imcView.setText(imcString);
+
+
     }
-    private void mostrarIMB(){
-        TextView imbView = (TextView) this.activity.findViewById(R.id.imb_view);
+    private void mostrarAltura(){
+        TextView alturaView = (TextView) perfilActivity.findViewById(R.id.altura_text_view);
+        alturaView.setText(Float.toString(Pessoa.getAltura()) + " cm");
+    }
+    private void mostrarPeso(){
+        TextView pesoView = (TextView) perfilActivity.findViewById(R.id.peso_text_view);
+        pesoView.setText("Peso: " + Float.toString(Pessoa.getPeso()) + " + " + Integer.toString(Pessoa.getDifPesoIdeal())+ " para peso ideal");
+    }
+    public void mostrarIMB(){
+        TextView imbView = (TextView) perfilActivity.findViewById(R.id.qnt_calorias_text_view);
         String imbString = this.calculator.calcIMB();
         imbView.setText(imbString);
 

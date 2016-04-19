@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
@@ -74,10 +75,7 @@ public class ConfiguracoesActivity extends AppCompatActivity{
                     pesoValido = false;
 
                 }
-                if(pesoValido = true){
-                    Pessoa.setPeso(Integer.parseInt(s.toString()));
-                    HealthController.setPesoExists(pesoValido);
-                }
+
 
             }
 
@@ -111,10 +109,7 @@ public class ConfiguracoesActivity extends AppCompatActivity{
                     }
                 }else alturaValida = false;
 
-                if(alturaValida = true){
-                    Pessoa.setAltura(Integer.parseInt(s.toString()));
-                    HealthController.setAlturaExists(alturaValida);
-                }
+
 
             }
 
@@ -146,10 +141,6 @@ public class ConfiguracoesActivity extends AppCompatActivity{
                     }
                 }else idadeValida = false;
 
-                if(idadeValida = true){
-                    Pessoa.setIdade(Integer.parseInt(s.toString()));
-                    HealthController.setIdadeExists(idadeValida);
-                }
             }
 
             @Override
@@ -189,7 +180,7 @@ public class ConfiguracoesActivity extends AppCompatActivity{
         spinnerExerc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Pessoa.setSexo(spinnerExerc.getSelectedItem().toString());
+                Pessoa.setQntExFisico(spinnerExerc.getSelectedItem().toString());
             }
 
             @Override
@@ -198,11 +189,34 @@ public class ConfiguracoesActivity extends AppCompatActivity{
             }
         });
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        this.pesoValido = false;
+        this.alturaValida = false;
+        this.idadeValida = false;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
+        EditText edtPeso = (EditText) findViewById(R.id.config_peso);
+        EditText edtAltura = (EditText) findViewById(R.id.config_altura);
+        EditText edtIdade = (EditText) findViewById(R.id.config_idade);
         if (item.getItemId() == android.R.id.home) {
+            if(pesoValido){
+                Pessoa.setPeso(Integer.parseInt(edtPeso.getText().toString()));
+                HealthController.setPesoExists(pesoValido);
+            }
+            if(alturaValida){
+                Pessoa.setAltura(Integer.parseInt(edtAltura.getText().toString()));
+                HealthController.setAlturaExists(alturaValida);
+            }
+
+            if(idadeValida){
+                Pessoa.setIdade(Integer.parseInt(edtIdade.getText().toString()));
+                HealthController.setIdadeExists(idadeValida);
+            }
             finish(); // close this activity and return to preview activity (if there is any)
         }
 

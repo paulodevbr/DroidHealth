@@ -13,6 +13,7 @@ public class Pessoa {
     private static String IMC;
     private static String IMB;
     private static int pesoIdeal;
+    private static int difPesoIdeal;
 
 
     public static float getPeso() {
@@ -85,5 +86,13 @@ public class Pessoa {
 
     public static void setPesoIdeal(int pesoIdeal) {
         Pessoa.pesoIdeal = pesoIdeal;
+    }
+
+    public static void setDifPesoIdeal(int dif) {
+        Pessoa.difPesoIdeal = dif;
+    }
+
+    public static int getDifPesoIdeal() {
+        return difPesoIdeal;
     }
 }

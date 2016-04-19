@@ -70,7 +70,7 @@ public class CalcAlimentacaoFragment extends Fragment {
 
                 //Caso altura, peso e idade são válidos, já é mostrado um resultado ao usuário
                 if (idadeValida && alturaValida && pesoValido) {
-                    healthController.updateActivity(getActivity());
+                   // healthController.updateActivity(getActivity());
                     healthController.mostrarIMB();
                 }
             }
@@ -107,7 +107,7 @@ public class CalcAlimentacaoFragment extends Fragment {
 
 
                 if (idadeValida && alturaValida && pesoValido) {
-                    healthController.updateActivity(getActivity());
+                   // healthController.updateActivity(getActivity());
                     healthController.mostrarIMB();
                 }
             }
@@ -143,7 +143,7 @@ public class CalcAlimentacaoFragment extends Fragment {
 
 
                     if (idadeValida && alturaValida && pesoValido) {
-                        healthController.updateActivity(getActivity());
+                        //healthController.updateActivity(getActivity());
                         healthController.mostrarIMB();
                     }
 
@@ -166,7 +166,7 @@ public class CalcAlimentacaoFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (idadeValida && alturaValida && pesoValido) {
-                    healthController.updateActivity(getActivity());
+                   // healthController.updateActivity(getActivity());
                     healthController.mostrarIMB();
                 }
             }
@@ -190,7 +190,7 @@ public class CalcAlimentacaoFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (idadeValida && alturaValida && pesoValido) {
-                    healthController.updateActivity(getActivity());
+                   // healthController.updateActivity(getActivity());
                     healthController.mostrarIMB();
                 }
             }

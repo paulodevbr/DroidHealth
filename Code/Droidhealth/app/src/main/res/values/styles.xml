@@ -28,7 +28,7 @@
 
 
     <style name="tabStripColor" parent="android:Widget.ActionBar.TabBar">
-
+        <item name="titleTextColor">@color/colorTabStrip</item>
         <item name="colorAccent">@color/colorTabStrip</item>
     </style>
 

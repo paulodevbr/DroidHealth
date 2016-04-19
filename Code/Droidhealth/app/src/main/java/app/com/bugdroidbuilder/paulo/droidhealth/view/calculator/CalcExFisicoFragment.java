@@ -68,7 +68,7 @@ public class CalcExFisicoFragment extends Fragment {
 
                 //Caso altura e peso são válidos, já é mostrado um resultado ao usuário
                 if (alturaValida && pesoValido) {
-                    healthController.updateActivity(getActivity());
+                    //healthController.updateActivity(getActivity());
                     healthController.mostrarIMC();
                 }
 
@@ -106,7 +106,7 @@ public class CalcExFisicoFragment extends Fragment {
 
 
                 if (alturaValida && pesoValido) {
-                    healthController.updateActivity(getActivity());
+                   // healthController.updateActivity(getActivity());
                     healthController.mostrarIMC();
                 }
             }

@@ -24,11 +24,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return new CalcHidratacaoFragment();
+                return new PerfilFragment();
             case 1:
-                return new CalcAlimentacaoFragment();
-            case 2:
-                return new CalcExFisicoFragment();
+                return new DicasFragment();
             default:
                 return null;
         }

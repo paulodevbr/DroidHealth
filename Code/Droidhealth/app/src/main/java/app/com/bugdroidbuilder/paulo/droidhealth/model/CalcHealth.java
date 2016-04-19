@@ -20,15 +20,20 @@ public final class CalcHealth {
         //calcula IMC, divide altura por 100 porque na formula do IMC altura deve estar em metros
         float peso = Pessoa.getPeso();
         float altura = Pessoa.getAltura();
-        Pessoa.setIMC(retornaResultIMC(peso/(Math.pow((altura/100), 2))));
+        double imc = peso/(Math.pow((altura/100), 2));
+        // já calcula o peso ideal e o armazena na classe Pessoa
+        Pessoa.setDifPesoIdeal(calcKgParaPesoIdeal(imc));
+        Pessoa.setIMC(retornaResultIMC(imc));
         return Pessoa.getIMC();
     }
 
 
-    public int calcPesoIdeal(double imc){
+    public int calcKgParaPesoIdeal(double imc){
         //calcula peso ideal do usuario de acordo com o resultado do IMC
-        Pessoa.setPesoIdeal(Integer.parseInt(Double.toString(Math.pow((Pessoa.getAltura()/100), 2) * 27)));
-        return Pessoa.getPesoIdeal();
+        // e retorna quantos kg faltam para atingir este peso
+        Pessoa.setPesoIdeal((int)(Math.pow((Pessoa.getAltura()/100), 2) * 27));
+
+        return (int)(Pessoa.getPesoIdeal() - Pessoa.getPeso());
     }
 
     // Verifica resultado do IMC e já concatena com uma string de feedback do resultado

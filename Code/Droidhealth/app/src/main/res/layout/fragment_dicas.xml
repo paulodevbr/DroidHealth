@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.com.bugdroidbuilder.paulo.droidhealth.view.DicasFragment">
+    tools:context="app.com.bugdroidbuilder.paulo.droidhealth.view.DicasFragment"
+    android:background="@color/colorBackground">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"

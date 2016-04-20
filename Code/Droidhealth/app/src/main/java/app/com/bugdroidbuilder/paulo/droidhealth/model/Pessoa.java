@@ -9,17 +9,17 @@ public class Pessoa {
     private static int idade;
     private static String sexo;
     private static String qntExFisico;
-    private static String qntAgua;
+
     private static float IMC;
-    private static String IMB;
+    private static float IMB;
     private static int pesoIdeal;
     private static int difPesoIdeal;
 
-    private static String pesoString = "";
-    private static String alturaString = "";
-    private static String imcString;
-
-
+    private static StringBuilder qntAgua = new StringBuilder();
+    private static StringBuilder pesoString = new StringBuilder();
+    private static StringBuilder alturaString = new StringBuilder();
+    private static StringBuilder imcString = new StringBuilder();
+    private static StringBuilder imbString = new StringBuilder();
 
     public static float getPeso() {
         return peso;
@@ -27,7 +27,7 @@ public class Pessoa {
 
     public static void setPeso(float peso) {
         Pessoa.peso = (int)peso;
-        Pessoa.pesoString = "Peso: " + Pessoa.peso + " Kg";
+        Pessoa.pesoString = new StringBuilder().append("Peso: ").append(Pessoa.peso).append(" Kg");
     }
 
     public static float getAltura() {
@@ -36,7 +36,7 @@ public class Pessoa {
 
     public static void setAltura(float altura) {
         Pessoa.altura = (int)altura;
-        Pessoa.alturaString = "Altura: " + Pessoa.altura + " cm";
+        Pessoa.alturaString = new StringBuilder().append("Altura: ").append((int)altura).append(" cm");
     }
 
     public static int getIdade() {
@@ -64,11 +64,11 @@ public class Pessoa {
     }
 
     public static String getQntAgua() {
-        return qntAgua;
+        return qntAgua.toString();
     }
 
     public static void setQntAgua(String qntAgua) {
-        Pessoa.qntAgua = "Consumo de água recomendado: " + qntAgua + " litros/dia";
+        Pessoa.qntAgua = new StringBuilder().append("Consumo de água recomendado: ").append(qntAgua).append(" litros/dia");
     }
 
     public static float getIMC() {
@@ -79,12 +79,17 @@ public class Pessoa {
         Pessoa.IMC = IMC;
     }
 
-    public static String getIMB() {
+    public static float getIMB() {
         return IMB;
     }
 
-    public static void setIMB(String IMB) {
-        Pessoa.IMB = "Gasto de kcal: "+ IMB+"/dia";
+    public static void setIMB(float IMB) {
+        Pessoa.IMB = IMB;
+        Pessoa.imbString = new StringBuilder().append("Gasto de kcal: ").append((int)IMB).append("/dia");
+    }
+
+    public static String getImbString() {
+        return imbString.toString();
     }
 
     public static int getPesoIdeal() {
@@ -96,11 +101,11 @@ public class Pessoa {
     }
 
     public static String getImcString() {
-        return imcString;
+        return imcString.toString();
     }
 
     public static void setImcString(String imcString) {
-        Pessoa.imcString = imcString;
+        Pessoa.imcString = new StringBuilder().append(imcString);
     }
 
     public static void setDifPesoIdeal(int dif) {
@@ -112,10 +117,10 @@ public class Pessoa {
     }
 
     public static String getPesoString() {
-        return pesoString;
+        return pesoString.toString();
     }
 
     public static String getAlturaString() {
-        return alturaString;
+        return alturaString.toString();
     }
 }

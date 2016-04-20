@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.PerfilFragment"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    android:background="@color/colorBackground">
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/panel_card"
@@ -87,10 +89,28 @@
                 android:textSize="16sp"
                 />
 
-
-
-
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".view.PerfilFragment">
+
+            <android.widget.Button
+                android:id="@+id/bt_ir_config"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="Ir para Configurações"
+                android:textColor="@color/colorTitleText"
+                android:background="@color/colorAccent" />
+        </RelativeLayout>
+
+
+
 
 
 

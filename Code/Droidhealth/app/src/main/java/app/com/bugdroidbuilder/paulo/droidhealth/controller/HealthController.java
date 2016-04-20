@@ -1,6 +1,8 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.controller;
 
 import android.app.Activity;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
@@ -16,7 +18,7 @@ public class HealthController {
     private final int MAX_PESO = 400;
     private final int MAX_ALTURA = 260;
     private final int MIN_PESO = 30;
-
+    private boolean hasButton = true;
     private final int MIN_ALTURA = 100;
     private final int MAX_IDADE = 120;
     private final int MIN_IDADE = 5;
@@ -32,10 +34,17 @@ public class HealthController {
 
 
     public void mostrarResumo(){
-
+        Button btConfig = (Button) perfilActivity.findViewById(R.id.bt_ir_config);
         if(pesoExists){
             mostrarHDR();
             if(alturaExists){
+
+                if(hasButton){
+                    ViewGroup layout = (ViewGroup) btConfig.getParent();
+                    layout.removeView(btConfig);
+                    hasButton = false;
+                }
+
                 mostrarIMC();
                 if(idadeExists){
                       mostrarIMB();

@@ -31,7 +31,7 @@ public final class CalcHealth {
 
     public int calcKgParaPesoIdeal(double imc){
         //calcula peso ideal do usuario de acordo com o resultado do IMC
-        // e retorna quantos kg faltam para atingir este peso
+        // e retorna quantos kg falta perder ou ganhar para atingir este peso
         Pessoa.setPesoIdeal((int)(Math.pow((Pessoa.getAltura()/100), 2) * 27));
 
         return (int)(Pessoa.getPesoIdeal() - Pessoa.getPeso());
@@ -64,22 +64,22 @@ public final class CalcHealth {
         float altura = Pessoa.getAltura();
         float idade = Pessoa.getIdade();
         String sexo = Pessoa.getSexo();
-        String imb;
+        double imb;
         double qntExercicios = verificaQntExercicios();
 
         switch(sexo){
 
             case"Masculino":
                 //Calcula IMB do sexo masculino
-                imb = formataTamanhoResultado(Double.toString((66 + (13.8 * peso) + (5 * altura) - (6.8 * idade)) * qntExercicios)) + " calorias";
-                Pessoa.setIMB(imb);
-                return Pessoa.getIMB();
+                imb = (66 + (13.8 * peso) + (5 * altura) - (6.8 * idade)) * qntExercicios;
+                Pessoa.setIMB((float)imb);
+                return Pessoa.getImbString();
 
             case"Feminino":
                 //Calcula IMB do sexo feminino
-                imb = formataTamanhoResultado(Double.toString((655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade)) * qntExercicios))+ " calorias";
-                Pessoa.setIMB(imb);
-                return Pessoa.getIMB();
+                imb = (655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade)) * qntExercicios;
+                Pessoa.setIMB((float)imb);
+                return Pessoa.getImbString();
             default:
                 return Double.toString(0.00);
         }

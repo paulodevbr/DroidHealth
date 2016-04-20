@@ -3,6 +3,7 @@ package app.com.bugdroidbuilder.paulo.droidhealth.view;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -200,29 +201,34 @@ public class ConfiguracoesActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
-        EditText edtPeso = (EditText) findViewById(R.id.config_peso);
-        EditText edtAltura = (EditText) findViewById(R.id.config_altura);
-        EditText edtIdade = (EditText) findViewById(R.id.config_idade);
-        if (item.getItemId() == android.R.id.home) {
-            if(pesoValido){
-                Pessoa.setPeso(Integer.parseInt(edtPeso.getText().toString()));
-                HealthController.setPesoExists(pesoValido);
-            }
-            if(alturaValida){
-                Pessoa.setAltura(Integer.parseInt(edtAltura.getText().toString()));
-                HealthController.setAlturaExists(alturaValida);
-            }
-
-            if(idadeValida){
-                Pessoa.setIdade(Integer.parseInt(edtIdade.getText().toString()));
-                HealthController.setIdadeExists(idadeValida);
-            }
-            finish(); // close this activity and return to preview activity (if there is any)
-        }
-
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_salvar);
+        salvar(fab);
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void salvar(View view){
+
+        EditText edtPeso = (EditText) findViewById(R.id.config_peso);
+        EditText edtAltura = (EditText) findViewById(R.id.config_altura);
+        EditText edtIdade = (EditText) findViewById(R.id.config_idade);
+
+        if(pesoValido){
+            Pessoa.setPeso(Integer.parseInt(edtPeso.getText().toString()));
+            HealthController.setPesoExists(pesoValido);
+        }
+        if(alturaValida){
+            Pessoa.setAltura(Integer.parseInt(edtAltura.getText().toString()));
+            HealthController.setAlturaExists(alturaValida);
+        }
+
+        if(idadeValida){
+            Pessoa.setIdade(Integer.parseInt(edtIdade.getText().toString()));
+            HealthController.setIdadeExists(idadeValida);
+        }
+        finish();
+
+    }
 
 
 }

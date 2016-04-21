@@ -23,6 +23,7 @@ public class PerfilFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_perfil, container, false);
     }
+    @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         Button btConfig = (Button) getActivity().findViewById(R.id.bt_ir_config);
@@ -32,7 +33,6 @@ public class PerfilFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ConfiguracoesActivity.class));
             }
         });
-
     }
 
 

@@ -3,7 +3,6 @@ package app.com.bugdroidbuilder.paulo.droidhealth.view;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -149,12 +148,12 @@ public class ConfiguracoesActivity extends AppCompatActivity{
             }
         });
         final Spinner spinnerSexo = (Spinner) findViewById(R.id.config_sexo_spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
+
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.imb_sexo_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+
         spinnerSexo.setAdapter(arrayAdapter);
 
         spinnerSexo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -170,12 +169,11 @@ public class ConfiguracoesActivity extends AppCompatActivity{
         });
 
         final Spinner spinnerExerc = (Spinner) findViewById(R.id.config_exercicios_spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
+
         arrayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.freq_exerc_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
         spinnerExerc.setAdapter(arrayAdapter);
 
         spinnerExerc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -200,9 +198,8 @@ public class ConfiguracoesActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // handle arrow click here
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_salvar);
-        salvar(fab);
+        // Se clicar para voltar no seta da toolbar, retorna a activity principal
+        finish();
         return super.onOptionsItemSelected(item);
     }
 

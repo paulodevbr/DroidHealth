@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sono_title">10 dicas para melhorar o sono</string>
+
+    <string name="dica1_sono">
+        <b>1. Respeite o horário de ir dormir</b>\n\n
+
+        Em média é preciso dormir cerca de 8 a 9 horas de sono repousante para estar bem alerta no dia seguinte e, por isso, quem precisa acordar cedo também deve ir para a cama cedo, respeitando estes horários até mesmo nos fins de semana e feriados. Uma boa dica é ter um alarme no celular para te lembrar que horas você deve ir para a cama.
+    </string>
+    <string name="dica2_sono">
+        <b>2. Fique longe de aparelhos eletrônicos</b>\n\n
+
+        Fique longe de aparelhos eletrônicos por pelo menos 1 hora antes de dormir, pois eles exercitam o cérebro e nos deixam mais agitados, prejudicando o sono.
+    </string>
+    <string name="dica3_sono">
+        <b>3. Não fume</b>\n\n
+
+        A nicotina é ainda mais estimulante que a cafeína. Comprovou-se que o fumante aumenta sua qualidade de sono quando deixa o hábito de fumar.
+
+    </string>
+    <string name="dica4_sono">
+        <b>4. Crie um ambiente escuro</b>\n\n
+
+        Crie um ambiente escuro e confortável que faça o cerébro relacionar escuro à hora de dormir. Apague as luzes da casa, ou deixe apenas um abajur ligado, de preferência com luz alaranjada, pois ela favorece o sono.
+    </string>
+    <string name="dica5_sono">
+        <b>5. Cochile se necessário</b>\n\n
+
+        Um cochilo de aproximadamente 10 minutos logo a seguir ao almoço já deve ser o suficiente para relaxar sem prejudicar o sono noturno. Não tire sonecas prolongadas durante o dia, pois elas podem "roubar" o sono da noite.
+    </string>
+    <string name="dica6_sono">
+        <b>6. Faça exercícios regularmente</b>\n\n
+
+        Os exercícios físicos fazem com que o corpo gaste mais energia, logo a necessidade de descanso é maior. Se você não pode ir a academia, experimente caminhar um pouco.
+    </string>
+    <string name="dica7_sono">
+        <b>7. Evite ingerir cafeína após as 17h</b>\n\n
+
+        Evite o consumo de alimentos estimulantes após as 17 h, como café, coca cola, chá preto e guaraná. Outras bebidas já ajudam o sono, como chás calmantes de camomila, erva doce e cidreira.
+    </string>
+   <string name="dica8_sono">
+        <b>8. Reduza a ansiedade</b>\n\n
+
+       Ansiedade para dormir também pode atrapalhar o sono. Evite ficar olhando ao relógio, e tente fazer algo para relaxar, como transpirar e expirar lentamente pode ser bom.
+    </string>
+    <string name="dica9_sono">
+        <b>9. Desenvolva um ritual de sono</b>\n\n
+
+        Você pode escolher seu ritual: escutar alguma música, relaxar os músculos, tomar uma ducha ou ler um livro pode ajudá-lo a conciliar o sono. O importante é que, uma vez escolhido o ritual, este deve ser repetido todas as noites.
+    </string>
+    <string name="dica10_sono">
+        <b>10. Não se deite após ter comido em excesso ou sem ter comido</b>\n\n
+
+        Se comer muito antes de deitar-se, obrigará o sistema digestivo a trabalhar demais. Talvez sinta uma sonolência agradável, mas logo terá sensação de peso que não o deixará dormir bem. Por outro lado, se estiver fazendo dieta, não durma sem comer algo de baixa caloria. Não se pode tentar dormir quando se discute com o estômago. Todo tipo de incômodo orgânico ou físico contribui para o despertar súbito, evitando entrar em sono profundo
+    </string>
+
+</resources>

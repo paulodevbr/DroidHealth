@@ -59,7 +59,6 @@ public class HealthController {
         TextView hdrView = (TextView) perfilActivity.findViewById(R.id.qnt_agua_text_view);
         TextView imcView = (TextView) perfilActivity.findViewById(R.id.imc_text_view);
         mostrarPeso();
-        mostrarAltura();
         imcView.setText("");
         String hdrString = this.calculator.calcAgua();
         hdrView.setText(hdrString);

@@ -29,6 +29,12 @@ public class Pessoa {
         Pessoa.peso = (int)peso;
         Pessoa.pesoString = new StringBuilder().append("Peso: ").append(Pessoa.peso).append(" Kg");
     }
+    public static void setPesoString(String _pesoString) {
+        Pessoa.pesoString = new StringBuilder().append(_pesoString);
+    }
+    public static String getPesoString() {
+        return pesoString.toString();
+    }
 
     public static float getAltura() {
         return altura;
@@ -107,6 +113,9 @@ public class Pessoa {
     public static void setImcString(String imcString) {
         Pessoa.imcString = new StringBuilder().append(imcString);
     }
+    public static void setImbString(String imbString) {
+        Pessoa.imbString = new StringBuilder().append(imbString);
+    }
 
     public static void setDifPesoIdeal(int dif) {
         Pessoa.difPesoIdeal = dif;
@@ -116,11 +125,10 @@ public class Pessoa {
         return difPesoIdeal;
     }
 
-    public static String getPesoString() {
-        return pesoString.toString();
-    }
+
 
     public static String getAlturaString() {
         return alturaString.toString();
     }
+
 }

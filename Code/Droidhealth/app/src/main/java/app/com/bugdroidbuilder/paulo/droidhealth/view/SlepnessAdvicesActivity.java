@@ -9,12 +9,12 @@ import android.view.MenuItem;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 
-public class DicasSonoActivity extends AppCompatActivity {
+public class SlepnessAdvicesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dicas_sono);
+        setContentView(R.layout.activity_slepness_advices);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dicas_sono);
         setSupportActionBar(toolbar);

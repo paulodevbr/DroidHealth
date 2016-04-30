@@ -21,9 +21,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return new PerfilFragment();
+                return new ProfileFragment();
             case 1:
-                return new DicasFragment();
+                return new AdvicesFragment();
             default:
                 return null;
         }

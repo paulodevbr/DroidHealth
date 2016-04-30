@@ -19,9 +19,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.ConfiguracoesActivity"
+            android:name=".view.SettingsActivity"
             android:label="Configurações"></activity>
-        <activity android:name=".view.DicasSonoActivity"></activity>
+        <activity android:name=".view.SlepnessAdvicesActivity"></activity>
     </application>
 
 </manifest>

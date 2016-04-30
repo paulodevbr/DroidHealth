@@ -5,6 +5,8 @@
     <color name="colorAccent">#8BC34A</color>
     <color name="colorTitleText">#FAFAFA</color>
     <color name="colorTabStrip">#FAFAFA</color>
+    <color name="colorTextTabSelected">#FAFAFA</color>
+    <color name="colorTextTabUnselected">#CFD8DC</color>
     <color name="colorBackground">#EEEEEE</color>
 
 </resources>

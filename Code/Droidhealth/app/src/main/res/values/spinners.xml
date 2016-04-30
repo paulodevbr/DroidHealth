@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="sexo">Sexo</string>
+    <string name="gender">Sexo</string>
 
     <string-array name="imb_sexo_array">
         <item>Masculino</item>

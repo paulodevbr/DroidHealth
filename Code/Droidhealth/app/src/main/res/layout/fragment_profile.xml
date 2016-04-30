@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.PerfilFragment"
+    tools:context=".view.ProfileFragment"
     android:theme="@style/AppTheme"
     android:background="@color/colorBackground">
 
@@ -33,7 +33,7 @@
                 android:id="@+id/imc_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nenhuma_informacao_titulo"
+                android:text="@string/no_information_title"
                 android:textSize="32sp"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="8dp"
@@ -58,7 +58,7 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/altura_text_view"
-                android:text="@string/nenhuma_informacao_texto"
+                android:text="@string/no_information_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -94,17 +94,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".view.PerfilFragment">
+            tools:context=".view.ProfileFragment">
 
             <android.widget.Button
-                android:id="@+id/bt_ir_config"
+                android:id="@+id/bt_go_settings"
                 android:layout_centerInParent="true"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:layout_marginBottom="32dp"
-                android:text="Ir para Configurações"
+                android:text=""
                 android:textColor="@color/colorTitleText"
                 android:background="@color/colorAccent" />
         </RelativeLayout>

@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 
-public class DicasFragment extends Fragment {
+public class AdvicesFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,16 +21,16 @@ public class DicasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dicas, container, false);
+        return inflater.inflate(R.layout.fragment_advices, container, false);
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        FrameLayout cardSono = (FrameLayout) getActivity().findViewById(R.id.card_dicas_sono);
-        cardSono.setOnClickListener(new View.OnClickListener() {
+        FrameLayout slepnesscard = (FrameLayout) getActivity().findViewById(R.id.card_dicas_sono);
+        slepnesscard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), DicasSonoActivity.class));
+                startActivity(new Intent(getActivity(), SlepnessAdvicesActivity.class));
             }
         });
     }

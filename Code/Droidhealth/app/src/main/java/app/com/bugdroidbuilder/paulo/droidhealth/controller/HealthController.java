@@ -7,37 +7,29 @@ import android.widget.TextView;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.CalcHealth;
-import app.com.bugdroidbuilder.paulo.droidhealth.model.Pessoa;
+import app.com.bugdroidbuilder.paulo.droidhealth.model.Person;
 
 public class HealthController {
-    private Activity perfilActivity;
-
 
     private CalcHealth calculator;
 
-    private final int MAX_PESO = 400;
-    private final int MAX_ALTURA = 260;
-    private final int MIN_PESO = 30;
     private boolean hasButton = true;
-    private final int MIN_ALTURA = 100;
-    private final int MAX_IDADE = 120;
-    private final int MIN_IDADE = 5;
-    private static boolean pesoExists = false;
-    private static boolean alturaExists = false;
-    private static boolean idadeExists = false;
+
+    private static boolean weightExists = false;
+    private static boolean heightExists = false;
+    private static boolean ageExists = false;
 
     public HealthController(Activity _activity){
-        this.perfilActivity = _activity;
         this.calculator = new CalcHealth();
     }
 
 
 
-    public void mostrarResumo(){
-        Button btConfig = (Button) perfilActivity.findViewById(R.id.bt_ir_config);
-        if(pesoExists){
-            mostrarHDR();
-            if(alturaExists){
+    public void showReview(Activity mainActivity){
+        Button btConfig = (Button) mainActivity.findViewById(R.id.bt_go_settings);
+        if(weightExists){
+            showHDR(mainActivity);
+            if(heightExists){
 
                 if(hasButton){
                     ViewGroup layout = (ViewGroup) btConfig.getParent();
@@ -45,91 +37,68 @@ public class HealthController {
                     hasButton = false;
                 }
 
-                mostrarIMC();
-                if(idadeExists){
-                      mostrarIMB();
+                showBMI(mainActivity);
+                if(ageExists){
+                      showBMR(mainActivity);
                 }
             }
         }
     }
 
 
-    public void mostrarHDR(){
-        mostrarPeso();
-        TextView hdrView = (TextView) perfilActivity.findViewById(R.id.qnt_agua_text_view);
-        TextView imcView = (TextView) perfilActivity.findViewById(R.id.imc_text_view);
-        mostrarPeso();
+    public void showHDR(Activity mainActivity){
+        showWeight(mainActivity);
+        TextView hdrView = (TextView) mainActivity.findViewById(R.id.qnt_agua_text_view);
+        TextView imcView = (TextView) mainActivity.findViewById(R.id.imc_text_view);
+        showWeight(mainActivity);
         imcView.setText("");
-        String hdrString = this.calculator.calcAgua();
+        String hdrString = this.calculator.calcWaterQnt();
         hdrView.setText(hdrString);
 
     }
-    public void mostrarIMC(){
-        mostrarAltura();
-        TextView imcView = (TextView) perfilActivity.findViewById(R.id.imc_text_view);
-        this.calculator.calcIMC();
-        imcView.setText(Pessoa.getImcString());
+    public void showBMI(Activity mainActivity){
+        showHeight(mainActivity);
+        TextView imcView = (TextView) mainActivity.findViewById(R.id.imc_text_view);
+        this.calculator.calcBMI();
+        imcView.setText(Person.getStringBMI());
         imcView.setTextSize(48);
     }
-    private void mostrarAltura(){
-        TextView alturaView = (TextView) perfilActivity.findViewById(R.id.altura_text_view);
-        alturaView.setText(Pessoa.getAlturaString());
+    private void showHeight(Activity mainActivity){
+        TextView alturaView = (TextView) mainActivity.findViewById(R.id.altura_text_view);
+        alturaView.setText(Person.getStringHeight());
     }
-    private void mostrarPeso(){
-        TextView pesoView = (TextView) perfilActivity.findViewById(R.id.peso_text_view);
-        pesoView.setText(Pessoa.getPesoString());
+    private void showWeight(Activity mainActivity){
+        TextView pesoView = (TextView) mainActivity.findViewById(R.id.peso_text_view);
+        pesoView.setText(Person.getStringWeight());
     }
-    public void mostrarIMB(){
-        TextView imbView = (TextView) perfilActivity.findViewById(R.id.qnt_calorias_text_view);
-        String imbString = this.calculator.calcIMB();
+    public void showBMR(Activity mainActivity){
+        TextView imbView = (TextView) mainActivity.findViewById(R.id.qnt_calorias_text_view);
+        String imbString = this.calculator.calcBMR();
         imbView.setText(imbString);
 
     }
-    public static boolean idadeExists() {
-        return idadeExists;
+    public static boolean ageExists() {
+        return ageExists;
     }
 
-    public static void setIdadeExists(boolean idadeSetExists) {
-        HealthController.idadeExists = idadeSetExists;
+    public static void setAgeExists(boolean idadeSetExists) {
+        HealthController.ageExists = idadeSetExists;
     }
 
-    public static boolean alturaExists() {
-        return alturaExists;
+    public static boolean heightExists() {
+        return heightExists;
     }
 
-    public static void setAlturaExists(boolean alturaExists) {
-        HealthController.alturaExists = alturaExists;
+    public static void setHeightExists(boolean heightExists) {
+        HealthController.heightExists = heightExists;
     }
 
     public static boolean pesoExists() {
-        return pesoExists;
+        return weightExists;
     }
 
-    public static void setPesoExists(boolean pesoExists) {
-        HealthController.pesoExists = pesoExists;
+    public static void setWeightExists(boolean weightExists) {
+        HealthController.weightExists = weightExists;
     }
 
-    public int getMIN_ALTURA() {
-        return MIN_ALTURA;
-    }
-
-    public int getMIN_PESO() {
-        return MIN_PESO;
-    }
-
-    public int getMAX_ALTURA() {
-        return MAX_ALTURA;
-    }
-
-    public int getMAX_PESO() {
-        return MAX_PESO;
-    }
-
-    public int getMAX_IDADE() {
-        return MAX_IDADE;
-    }
-
-    public int getMIN_IDADE() {
-        return MIN_IDADE;
-    }
 }

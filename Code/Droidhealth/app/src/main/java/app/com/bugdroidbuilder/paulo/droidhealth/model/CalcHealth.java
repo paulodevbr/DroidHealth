@@ -1,12 +1,9 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.model;
 
 /**
- * Created by paulo on 02/04/16.
+ *
  */
 public final class CalcHealth {
-
-
-
 
     private final String MUITO_ABAIXO_DO_PESO = "Muito abaixo do peso";
     private final String ABAIXO_DO_PESO = "Abaixo do peso";
@@ -16,77 +13,76 @@ public final class CalcHealth {
     private final String OBESIDADE_SEVERA = "Obesidade severa";
     private final String OBESIDADE_MORBIDA = "Obesidade mórbida";
 
-    public String calcIMC(){
+    public String calcBMI(){
         //calcula IMC, divide altura por 100 porque na formula do IMC altura deve estar em metros
-        float peso = Pessoa.getPeso();
-        float altura = Pessoa.getAltura();
-        double imc = peso/(Math.pow((altura/100), 2));
-        // já calcula o peso ideal e o armazena na classe Pessoa
-        Pessoa.setDifPesoIdeal(calcKgParaPesoIdeal(imc));
-        Pessoa.setIMC((float)imc);
-        Pessoa.setImcString(retornaResultIMC(imc));
-        return Float.toString(Pessoa.getIMC());
+        float weight = Person.getWeight();
+        float height = Person.getHeight();
+        double bmi = weight/(Math.pow((height/100), 2));
+        // já calcula o peso ideal e o armazena na classe Person
+        Person.setDifIdealWeight(calcKgToIdealWeight());
+        Person.setBMI((float)bmi);
+        Person.setStringBMI(retornResultBMI(bmi));
+        return Float.toString(Person.getBMI());
     }
 
 
-    public int calcKgParaPesoIdeal(double imc){
+    public int calcKgToIdealWeight(){
         //calcula peso ideal do usuario de acordo com o resultado do IMC
         // e retorna quantos kg falta perder ou ganhar para atingir este peso
-        Pessoa.setPesoIdeal((int)(Math.pow((Pessoa.getAltura()/100), 2) * 27));
+        Person.setPesoIdeal((int)(Math.pow((Person.getHeight()/100), 2) * 27));
 
-        return (int)(Pessoa.getPesoIdeal() - Pessoa.getPeso());
+        return (int)(Person.getPesoIdeal() - Person.getWeight());
     }
 
     // Verifica resultado do IMC e já concatena com uma string de feedback do resultado
-    public String retornaResultIMC(double imc){
+    public String retornResultBMI(double bmi){
 
-        String resultado = Double.toString(imc);
-        if(imc < 17){
+        if(bmi < 17){
             return MUITO_ABAIXO_DO_PESO;
-        }else if(17 <= imc && imc <= 18.49){
+        }else if(17 <= bmi && bmi <= 18.49){
             return ABAIXO_DO_PESO;
-        }else if(18.5 <= imc && imc <= 24.99){
+        }else if(18.5 <= bmi && bmi <= 24.99){
             return NO_PESO;
-        }else if(25 <= imc && imc <= 29.99){
+        }else if(25 <= bmi && bmi <= 29.99){
             return ACIMA_DO_PESO;
-        }else if(30 <= imc && imc <= 34.99){
+        }else if(30 <= bmi && bmi <= 34.99){
             return  OBESIDADE;
         }
-        else if(35 <= imc && imc >= 39.99){
+        else if(35 <= bmi && bmi >= 39.99){
             return OBESIDADE_SEVERA;
         }else{
             return OBESIDADE_MORBIDA;
         }
 
     }
-    public String calcIMB(){
-        float peso = Pessoa.getPeso();
-        float altura = Pessoa.getAltura();
-        float idade = Pessoa.getIdade();
-        String sexo = Pessoa.getSexo();
-        double imb;
-        double qntExercicios = verificaQntExercicios();
+    public String calcBMR(){
+        float weight = Person.getWeight();
+        float height = Person.getHeight();
+        float age = Person.getAge();
+        String gender = Person.getGender();
+        double bmr;
+        double qntPhysicalAct = checkQntPhysicalAct();
 
-        switch(sexo){
+        switch(gender){
 
             case"Masculino":
                 //Calcula IMB do sexo masculino
-                imb = (66 + (13.8 * peso) + (5 * altura) - (6.8 * idade)) * qntExercicios;
-                Pessoa.setIMB((float)imb);
-                return Pessoa.getImbString();
+                bmr = (66 + (13.8 * weight) + (5 * height) - (6.8 * age)) * qntPhysicalAct;
+                Person.setBMR((float)bmr);
+                return Person.getStringBMR();
 
             case"Feminino":
                 //Calcula IMB do sexo feminino
-                imb = (655 + (9.6 * peso) + (1.8 * altura) - (4.7 * idade)) * qntExercicios;
-                Pessoa.setIMB((float)imb);
-                return Pessoa.getImbString();
+                bmr = (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)) * qntPhysicalAct;
+                Person.setBMR((float)bmr);
+                return Person.getStringBMR();
             default:
                 return Double.toString(0.00);
         }
 
     }
-    public double verificaQntExercicios() {
-        String qntExercString = Pessoa.getQntExFisico();
+    public double checkQntPhysicalAct() {
+        String qntExercString = Person.getQntPhysicalActivies();
         double valQntExerc;
         switch (qntExercString){
             case "Sedentário":
@@ -108,45 +104,45 @@ public final class CalcHealth {
         }
         return valQntExerc;
     }
-    public String calcAgua(){
-        float peso = Pessoa.getPeso();
-        String resultAgua = Double.toString(peso * 0.035);
-        Pessoa.setQntAgua(formataTamanhoResultado(resultAgua));
-        return Pessoa.getQntAgua();
+    public String calcWaterQnt(){
+        float peso = Person.getWeight();
+        String resultWater = Double.toString(peso * 0.035);
+        Person.setStringHDR(convertResult(resultWater));
+        return Person.getStringHDR();
 
     }
-    public String formataTamanhoResultado(String resultado){
-        if(resultado.length()>5){
-            resultado = resultado.substring(0,5);
+    public String convertResult(String result){
+        if(result.length()>5){
+            result = result.substring(0,5);
         }
-        switch(resultado.length()){
-            case 1: return resultado.substring(0,1);
-            case 2: return resultado.substring(0,2);
-            case 3: return resultado.substring(0,3);
+        switch(result.length()){
+            case 1: return result.substring(0,1);
+            case 2: return result.substring(0,2);
+            case 3: return result.substring(0,3);
             case 4:
-                switch (resultado.indexOf(".")){
+                switch (result.indexOf(".")){
                     case 2:
-                        return resultado.substring(0,4);
+                        return result.substring(0,4);
 
                     case 1:
-                        return resultado.substring(0,3);
+                        return result.substring(0,3);
                     default:
                         break;
                 }
-                return resultado.substring(0,4);
+                return result.substring(0,4);
             case 5:
-                switch (resultado.indexOf(".")){
+                switch (result.indexOf(".")){
                     case 2:
-                        return resultado.substring(0,4);
+                        return result.substring(0,4);
 
                     case 1:
-                        return resultado.substring(0,3);
+                        return result.substring(0,3);
                     default:
                         break;
                 }
-                return resultado.substring(0,4);
+                return result.substring(0,4);
 
-            default: return resultado.substring(0,1);
+            default: return result.substring(0,1);
         }
 
     }

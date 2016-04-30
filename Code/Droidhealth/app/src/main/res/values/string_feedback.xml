@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="nenhuma_informacao_texto">Tente inserir seu peso nas Configurações</string>
-
-    <string name="nenhuma_informacao_titulo">Nenhuma informação</string>
-    <string name="melhores_informacoes">Para melhores informações, insira mais dados nas configurações do app</string>
-</resources>

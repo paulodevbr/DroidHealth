@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 
-public class PerfilFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,16 +21,16 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        Button btConfig = (Button) getActivity().findViewById(R.id.bt_ir_config);
+        Button btConfig = (Button) getActivity().findViewById(R.id.bt_go_settings);
         btConfig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ConfiguracoesActivity.class));
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
             }
         });
     }

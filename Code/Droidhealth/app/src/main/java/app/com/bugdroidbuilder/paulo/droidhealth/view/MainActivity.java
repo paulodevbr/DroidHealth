@@ -12,15 +12,16 @@ import android.view.MenuItem;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
-import app.com.bugdroidbuilder.paulo.droidhealth.model.Pessoa;
+import app.com.bugdroidbuilder.paulo.droidhealth.model.Person;
 
 /**
  * Created by paulo on 13/04/16.
  */
 public class MainActivity extends AppCompatActivity{
 
+    public SharedPreferences settings;
+    public static final String PREFS_NAME = "MyPrefsFile";
 
-    private static final String PREFS_NAME = "MyPrefsFile";
     HealthController healthController;
 
     @Override
@@ -31,9 +32,9 @@ public class MainActivity extends AppCompatActivity{
         startTabControl();
         healthController = new HealthController(this);
         // Restore preferences
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        if(settings.getBoolean("saved", true)){
-            restoreUserData(settings);
+        this.settings = getSharedPreferences(PREFS_NAME, 0);
+        if(settings.getBoolean("saved", false)){
+            restoreUserData();
         }
 
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity{
         tabLayout.addTab(tabLayout.newTab().setText("Perfil"));
         tabLayout.addTab(tabLayout.newTab().setText("Dicas"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabTextColors(getResources().getColor(R.color.colorTextTabUnselected), getResources().getColor(R.color.colorTextTabSelected));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity{
 
 
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this, ConfiguracoesActivity.class));
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
@@ -96,21 +98,17 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onResume(){
         super.onResume();
-        healthController.mostrarResumo();
+        healthController.showReview(this);
 
     }
     @Override
     protected void onStop(){
         super.onStop();
-
-        // We need an Editor object to make preference changes.
-        // All objects are from android.context.Context
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
+        SharedPreferences.Editor editor = this.settings.edit();
         if(HealthController.pesoExists()){
             editor.putBoolean("pesoExists", HealthController.pesoExists());
-            editor.putString("peso", Pessoa.getPesoString());
-            editor.putString("hdrString", Pessoa.getQntAgua());
+            editor.putFloat("peso", Person.getWeight());
+            editor.putString("hdrString", Person.getStringHDR());
         }
 
         // Commit the edits!
@@ -118,13 +116,16 @@ public class MainActivity extends AppCompatActivity{
         editor.apply();
     }
 
-    private void restoreUserData(SharedPreferences settings){
+    //Restaura os dados persistentes do usuario
+    private void restoreUserData(){
 
+        //Verifica se o peso ja foi inserido alguma vez no app
+        if(this.settings.getBoolean("pesoExists", false)){
+            //se sim, a variavel PesoExists é setada pra verdadeiro
 
-        if(settings.getBoolean("pesoExists", true)){
-            HealthController.setPesoExists(settings.getBoolean("pesoExists", true));
-            Pessoa.setPesoString(settings.getString("peso", Pessoa.getPesoString()));
-            Pessoa.setQntAgua(settings.getString("hdrString", Pessoa.getQntAgua()));
+            HealthController.setWeightExists(true);
+            Person.setWeight(this.settings.getFloat("peso", 0));
+            Person.setStringHDR(this.settings.getString("hdrString", null));
         }
     }
 

@@ -4,8 +4,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        
+
 
     </style>
 
@@ -22,9 +23,5 @@
     <style name="tabStyle" parent="Widget.Design.TabLayout">
         <item name="colorAccent">@color/colorTabStrip</item>
     </style>
-
-
-
-
 
 </resources>

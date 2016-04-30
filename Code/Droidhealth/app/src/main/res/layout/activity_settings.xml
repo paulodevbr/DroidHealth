@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ConfiguracoesActivity">
+    tools:context=".view.SettingsActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_configuracoes"
@@ -21,7 +21,7 @@
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            tools:context=".view.ConfiguracoesActivity"
+            tools:context=".view.SettingsActivity"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
 
@@ -37,13 +37,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/config_peso_input"
+                        android:id="@+id/settings_weight_input"
                         android:layout_width="@dimen/edit_text"
                         android:layout_height="wrap_content"
                         android:animateLayoutChanges="true"
                         android:layout_alignParentLeft="true">
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/config_peso"
+                            android:id="@+id/settings_weight_edt"
                             android:layout_height="match_parent"
                             android:layout_width="match_parent"
                             android:inputType="number"
@@ -59,7 +59,7 @@
                     android:layout_marginTop="26dp"
                     android:layout_marginRight="-20dp"
                     android:textSize="18sp"
-                    android:layout_alignRight="@id/config_peso_input"/>
+                    android:layout_alignRight="@id/settings_weight_input"/>
 
                 </RelativeLayout>
 
@@ -67,14 +67,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/config_altura_input"
+                        android:id="@+id/settings_height_input"
                         android:layout_width="@dimen/edit_text"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_alignParentLeft="true"
                         android:animateLayoutChanges="true">
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/config_altura"
+                            android:id="@+id/settings_height_edt"
                             android:layout_height="match_parent"
                             android:layout_width="match_parent"
                             android:inputType="number"
@@ -91,7 +91,7 @@
                         android:layout_marginTop="34dp"
                         android:textSize="18sp"
                         android:layout_marginRight="-23dp"
-                        android:layout_alignRight="@id/config_altura_input"
+                        android:layout_alignRight="@id/settings_height_input"
                         />
 
                 </RelativeLayout>
@@ -101,14 +101,14 @@
                      android:layout_height="wrap_content">
 
                      <android.support.design.widget.TextInputLayout
-                         android:id="@+id/config_idade_input"
+                         android:id="@+id/settings_age_input"
                          android:layout_width="@dimen/edit_text"
                          android:layout_height="wrap_content"
                          android:layout_marginTop="8dp"
                          android:layout_alignParentLeft="true"
                          android:animateLayoutChanges="true">
                          <android.support.design.widget.TextInputEditText
-                             android:id="@+id/config_idade"
+                             android:id="@+id/settings_age_edt"
                              android:layout_height="match_parent"
                              android:layout_width="match_parent"
                              android:inputType="number"
@@ -124,7 +124,7 @@
                          android:text="@string/idade_unit"
                          android:layout_marginTop="34dp"
                          android:layout_marginRight="-38dp"
-                         android:layout_alignRight="@id/config_idade_input"
+                         android:layout_alignRight="@id/settings_age_input"
                          android:textSize="18sp" />
 
                  </RelativeLayout>
@@ -132,12 +132,12 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/sexo"
+                        android:text="@string/gender"
                         android:layout_marginTop="16dp"
                         android:layout_marginLeft="4dp" />
 
                     <android.support.v7.widget.AppCompatSpinner
-                        android:id="@+id/config_sexo_spinner"
+                        android:id="@+id/settings_gender_spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:theme="@style/AppTheme"
@@ -153,7 +153,7 @@
                         android:layout_marginLeft="4dp" />
 
                     <android.support.v7.widget.AppCompatSpinner
-                        android:id="@+id/config_exercicios_spinner"
+                        android:id="@+id/settings_physical_act_spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:theme="@style/AppTheme"
@@ -162,16 +162,14 @@
                     </android.support.v7.widget.AppCompatSpinner>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="170dp">
+                        android:layout_height="100dp">
                         <android.support.design.widget.FloatingActionButton
-                            android:id="@+id/fab_salvar"
+                            android:id="@+id/fab_save"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="20dp"
                             android:src="@drawable/fab_save"
-                            android:onClick="salvar"/>
+                            android:onClick="save"/>
                     </RelativeLayout>
 
             </LinearLayout>

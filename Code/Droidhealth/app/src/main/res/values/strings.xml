@@ -12,13 +12,13 @@
     <string name="title_informação">Informação</string>
 
 
-    <string name="imc_overview">
-        O Índice de Massa Corporal(IMC) é um cálculo que foi desenvolvido com o objetivo de saber rapidamente o peso ideal de uma pessoa.
+    <string name="bmi_overview">
+        O Índice de Massa Corporal(BMI) é um cálculo que foi desenvolvido com o objetivo de saber rapidamente o weight ideal de uma pessoa.
 
     </string>
 
-    <string name="imb_overview">
-        O Índice de Metabolismo Basal(IMB) é um cálculo aproximado das calorias que uma pessoa precisa diariamente.
+    <string name="bmr_overview">
+        O Índice de Metabolismo Basal(BMR) é um cálculo aproximado das calorias que uma pessoa precisa diariamente.
     </string>
 
     <string name="hdr_overview">

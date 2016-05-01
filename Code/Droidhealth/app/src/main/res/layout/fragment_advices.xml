@@ -28,7 +28,7 @@
             android:weightSum="10">
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/sono_title"
+                android:id="@+id/sleep_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/sleepness_title_icon"

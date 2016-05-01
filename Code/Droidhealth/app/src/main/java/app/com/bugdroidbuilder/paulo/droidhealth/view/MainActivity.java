@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
@@ -15,9 +14,9 @@ import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.Person;
 
 /**
- * Created by paulo on 13/04/16.
+ *
  */
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements ToolbarInterface {
 
     public SharedPreferences settings;
     public static final String PREFS_NAME = "MyPrefsFile";
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.main_activity);
         startToolbar();
         startTabControl();
-        healthController = new HealthController(this);
+        healthController = new HealthController();
         // Restore preferences
         this.settings = getSharedPreferences(PREFS_NAME, 0);
         if(settings.getBoolean("saved", false)){
@@ -38,17 +37,37 @@ public class MainActivity extends AppCompatActivity{
         }
 
 
+
     }
-    private void startToolbar(){
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        healthController.showReview(this);
+    }
+
+
+
+    /** Initialize system toolbar
+     *
+     */
+    public void startToolbar(){
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
+
+    /** Initialize and control MainActivity tabs
+     *
+     */
     private void startTabControl(){
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        //Adiciona os ícones às tabs
+
+        // /Add tabs and their respective text
         tabLayout.addTab(tabLayout.newTab().setText("Perfil"));
         tabLayout.addTab(tabLayout.newTab().setText("Dicas"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        //Set the color of the text in the tab
         tabLayout.setTabTextColors(getResources().getColor(R.color.colorTextTabUnselected), getResources().getColor(R.color.colorTextTabSelected));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -73,12 +92,7 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+
     }
 
     @Override
@@ -94,13 +108,6 @@ public class MainActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        healthController.showReview(this);
-
-    }
     @Override
     protected void onStop(){
         super.onStop();
@@ -116,7 +123,9 @@ public class MainActivity extends AppCompatActivity{
         editor.apply();
     }
 
-    //Restaura os dados persistentes do usuario
+    /** Restore persistent user data
+     *
+     */
     private void restoreUserData(){
 
         //Verifica se o peso ja foi inserido alguma vez no app

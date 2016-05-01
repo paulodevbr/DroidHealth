@@ -15,16 +15,20 @@ public class HealthController {
 
     private boolean hasButton = true;
 
-    private static boolean weightExists = false;
+    private static boolean weightExists = false ;
     private static boolean heightExists = false;
     private static boolean ageExists = false;
 
-    public HealthController(Activity _activity){
+    public HealthController(){
         this.calculator = new CalcHealth();
+
     }
 
 
-
+    /** Show review about the user, weight, ideal weight, height, health condition(based on BMI)...
+     *
+     * @param mainActivity Activity needed to access layouts
+     */
     public void showReview(Activity mainActivity){
         Button btConfig = (Button) mainActivity.findViewById(R.id.bt_go_settings);
         if(weightExists){
@@ -45,36 +49,61 @@ public class HealthController {
         }
     }
 
-
+    /** Show to user hydration on the screen
+     *
+     * @param mainActivity activity necessary to take a reference to app layout
+     */
     public void showHDR(Activity mainActivity){
-        showWeight(mainActivity);
-        TextView hdrView = (TextView) mainActivity.findViewById(R.id.qnt_agua_text_view);
-        TextView imcView = (TextView) mainActivity.findViewById(R.id.imc_text_view);
+        TextView heightView = (TextView) mainActivity.findViewById(R.id.height_text_view);
+        heightView.setText(mainActivity.getResources().getString(R.string.better_information));
+        TextView hdrView = (TextView) mainActivity.findViewById(R.id.hdr_text_view);
+        TextView imcView = (TextView) mainActivity.findViewById(R.id.bmi_text_view);
         showWeight(mainActivity);
         imcView.setText("");
-        String hdrString = this.calculator.calcWaterQnt();
-        hdrView.setText(hdrString);
+        this.calculator.calcHDR();
+        hdrView.setText(Person.getStringHDR());
 
     }
+
+    /** Show to user body mass index on the screen
+     *
+     * @param mainActivity activity necessary to take a reference to app layout
+     */
     public void showBMI(Activity mainActivity){
         showHeight(mainActivity);
-        TextView imcView = (TextView) mainActivity.findViewById(R.id.imc_text_view);
+        showWeight(mainActivity);
+        TextView imcView = (TextView) mainActivity.findViewById(R.id.bmi_text_view);
         this.calculator.calcBMI();
         imcView.setText(Person.getStringBMI());
         imcView.setTextSize(48);
     }
+
+    /** Show to user height on the screen
+     *
+     * @param mainActivity activity necessary to take a reference to app layout
+     */
     private void showHeight(Activity mainActivity){
-        TextView alturaView = (TextView) mainActivity.findViewById(R.id.altura_text_view);
+        TextView alturaView = (TextView) mainActivity.findViewById(R.id.height_text_view);
         alturaView.setText(Person.getStringHeight());
     }
+
+    /** Show to user weight on the screen
+     *
+     * @param mainActivity activity necessary to take a reference to app layout
+     */
     private void showWeight(Activity mainActivity){
-        TextView pesoView = (TextView) mainActivity.findViewById(R.id.peso_text_view);
+        TextView pesoView = (TextView) mainActivity.findViewById(R.id.weight_text_view);
         pesoView.setText(Person.getStringWeight());
     }
+
+    /** Show to user basal metabolic rate on the screen
+     *
+     * @param mainActivity activity necessary to take a reference to app layout
+     */
     public void showBMR(Activity mainActivity){
-        TextView imbView = (TextView) mainActivity.findViewById(R.id.qnt_calorias_text_view);
-        String imbString = this.calculator.calcBMR();
-        imbView.setText(imbString);
+        TextView imbView = (TextView) mainActivity.findViewById(R.id.calories_per_day);
+        this.calculator.calcBMR();
+        imbView.setText(Person.getStringBMR());
 
     }
     public static boolean ageExists() {

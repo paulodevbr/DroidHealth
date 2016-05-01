@@ -1,28 +1,33 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.model;
 
-/**
+/** Class that can calculate Body Mass Index, Basal Metabolic Rate, and the hidration according to user data
  *
  */
 public final class CalcHealth {
 
-    private final String MUITO_ABAIXO_DO_PESO = "Muito abaixo do peso";
-    private final String ABAIXO_DO_PESO = "Abaixo do peso";
-    private final String NO_PESO = "Saudável";
-    private final String ACIMA_DO_PESO = "Acima do peso";
-    private final String OBESIDADE = "Obesidade";
-    private final String OBESIDADE_SEVERA = "Obesidade severa";
-    private final String OBESIDADE_MORBIDA = "Obesidade mórbida";
+    /** Calculate the hydration per day according to user weight
+     *
+     */
+    public void calcHDR(){
+        float peso = Person.getWeight();
+        double resultWater = peso * 0.035;
+        Person.setHDR((float)resultWater);
 
-    public String calcBMI(){
-        //calcula IMC, divide altura por 100 porque na formula do IMC altura deve estar em metros
+    }
+
+    /** Calculate the Body Mass Index and return the health condition
+     *
+     */
+    public void calcBMI(){
+        //calculate BMI, and height is divided by 100 because is needed to be in meters
         float weight = Person.getWeight();
         float height = Person.getHeight();
         double bmi = weight/(Math.pow((height/100), 2));
-        // já calcula o peso ideal e o armazena na classe Person
+        // calculate the ideal weight and store it in class Person
         Person.setDifIdealWeight(calcKgToIdealWeight());
         Person.setBMI((float)bmi);
-        Person.setStringBMI(retornResultBMI(bmi));
-        return Float.toString(Person.getBMI());
+        Person.setStringBMI(returnHealthCondition(bmi));
+
     }
 
 
@@ -34,8 +39,19 @@ public final class CalcHealth {
         return (int)(Person.getPesoIdeal() - Person.getWeight());
     }
 
-    // Verifica resultado do IMC e já concatena com uma string de feedback do resultado
-    public String retornResultBMI(double bmi){
+    /** Verify the Body Metabolic Index result and return the health condition
+     *
+     * @param bmi Body Mass Index
+     * @return health condition
+     */
+    public String returnHealthCondition(double bmi){
+        final String MUITO_ABAIXO_DO_PESO = "Muito abaixo do peso";
+        final String ABAIXO_DO_PESO = "Abaixo do peso";
+        final String NO_PESO = "Saudável";
+        final String ACIMA_DO_PESO = "Acima do peso";
+        final String OBESIDADE = "Obesidade";
+        final String OBESIDADE_SEVERA = "Obesidade severa";
+        final String OBESIDADE_MORBIDA = "Obesidade mórbida";
 
         if(bmi < 17){
             return MUITO_ABAIXO_DO_PESO;
@@ -55,7 +71,11 @@ public final class CalcHealth {
         }
 
     }
-    public String calcBMR(){
+
+    /** Calculate the Basal Metabolic Rate
+     *
+     */
+    public void calcBMR(){
         float weight = Person.getWeight();
         float height = Person.getHeight();
         float age = Person.getAge();
@@ -66,21 +86,24 @@ public final class CalcHealth {
         switch(gender){
 
             case"Masculino":
-                //Calcula IMB do sexo masculino
+                //Calculate Basal Metabolic Rate for men
                 bmr = (66 + (13.8 * weight) + (5 * height) - (6.8 * age)) * qntPhysicalAct;
                 Person.setBMR((float)bmr);
-                return Person.getStringBMR();
 
             case"Feminino":
-                //Calcula IMB do sexo feminino
+                //Calculate Basal Metabolic Rate for women
                 bmr = (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)) * qntPhysicalAct;
                 Person.setBMR((float)bmr);
-                return Person.getStringBMR();
             default:
-                return Double.toString(0.00);
+
         }
 
     }
+
+    /** Check the frequency of physical activities
+     *
+     * @return a value to calculate BMR according to the frequency of physical activities
+     */
     public double checkQntPhysicalAct() {
         String qntExercString = Person.getQntPhysicalActivies();
         double valQntExerc;
@@ -104,47 +127,7 @@ public final class CalcHealth {
         }
         return valQntExerc;
     }
-    public String calcWaterQnt(){
-        float peso = Person.getWeight();
-        String resultWater = Double.toString(peso * 0.035);
-        Person.setStringHDR(convertResult(resultWater));
-        return Person.getStringHDR();
 
-    }
-    public String convertResult(String result){
-        if(result.length()>5){
-            result = result.substring(0,5);
-        }
-        switch(result.length()){
-            case 1: return result.substring(0,1);
-            case 2: return result.substring(0,2);
-            case 3: return result.substring(0,3);
-            case 4:
-                switch (result.indexOf(".")){
-                    case 2:
-                        return result.substring(0,4);
 
-                    case 1:
-                        return result.substring(0,3);
-                    default:
-                        break;
-                }
-                return result.substring(0,4);
-            case 5:
-                switch (result.indexOf(".")){
-                    case 2:
-                        return result.substring(0,4);
-
-                    case 1:
-                        return result.substring(0,3);
-                    default:
-                        break;
-                }
-                return result.substring(0,4);
-
-            default: return result.substring(0,1);
-        }
-
-    }
 
 }

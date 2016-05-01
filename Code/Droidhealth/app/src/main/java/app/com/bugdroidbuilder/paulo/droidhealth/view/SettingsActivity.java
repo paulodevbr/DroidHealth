@@ -19,7 +19,7 @@ import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.Person;
 
-public class SettingsActivity extends AppCompatActivity{
+public class SettingsActivity extends AppCompatActivity implements ToolbarInterface{
 
     private final int MIN_HEIGHT = 100;
     private final int MAX_AGE = 120;
@@ -38,7 +38,65 @@ public class SettingsActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        //Instancia a toolbar da activity
+        startToolbar();
+
+        healthController = new HealthController();
+
+        startEdtWeightListener();
+        startEdtHeightListener();
+        startEdtAgeListener();
+        startSpinnerGender();
+        startSpinnerExerc();
+
+    }
+    @Override
+    public void onResume(){
+        //When entering this activity set all values to false, in order to avoid taking invalid information
+        super.onResume();
+        this.validWeight = false;
+        this.validHeight = false;
+        this.validAge = false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // If the user touch in the toolbar arrow, finish this activity and go back to main
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
+
+    /** Save the information entered by the user
+     *
+     * @param view Floating Action Button save
+     */
+    public void save(View view) {
+
+        EditText edtWeight = (EditText) findViewById(R.id.settings_weight_edt);
+        EditText edtHeight = (EditText) findViewById(R.id.settings_height_edt);
+        EditText edtAge = (EditText) findViewById(R.id.settings_age_edt);
+
+        //Verify if the information entered is valid
+
+        if (validWeight) {
+            Person.setWeight(Integer.parseInt(edtWeight.getText().toString()));
+            HealthController.setWeightExists(validWeight);
+        }
+        if (validHeight) {
+            Person.setHeight(Integer.parseInt(edtHeight.getText().toString()));
+            HealthController.setHeightExists(validHeight);
+        }
+
+        if (validAge) {
+            Person.setAge(Integer.parseInt(edtAge.getText().toString()));
+            HealthController.setAgeExists(validAge);
+        }
+        finish();
+
+    }
+
+
+    @Override
+    public void startToolbar() {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_configuracoes);
         setSupportActionBar(toolbar);
         //Habilita o botão de sair na toolbar
@@ -47,11 +105,15 @@ public class SettingsActivity extends AppCompatActivity{
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(getResources().getColor(R.color.colorTabStrip), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        healthController = new HealthController(this);
+    }
 
-        TextInputEditText edtPeso = (TextInputEditText) findViewById(R.id.settings_weight_edt);
-        //Listener que verifica quando o campo peso é alterado
-        edtPeso.addTextChangedListener(new TextWatcher() {
+    /** Start a listener to verify when the editText weight is changed by user
+     *
+     */
+    public void startEdtWeightListener(){
+        TextInputEditText edtWeight = (TextInputEditText) findViewById(R.id.settings_weight_edt);
+        //
+        edtWeight.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -61,8 +123,8 @@ public class SettingsActivity extends AppCompatActivity{
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                /* verifica se o peso é menor que o peso máximo e menor que o peso mínimo
-                 * e se o usuário entrou com 2 ou mais caracteres
+                /* check if the weight is higher than min and lower than max
+                 * and if the user entered with 2 or more digits
                  */
                 if(s.length()>=2){
                     if(Integer.parseInt(s.toString()) < MAX_WEIGHT){
@@ -92,19 +154,25 @@ public class SettingsActivity extends AppCompatActivity{
 
             }
         });
-
-        TextInputEditText edtAltura = (TextInputEditText)findViewById(R.id.settings_height_edt);
-        edtAltura.addTextChangedListener(new TextWatcher() {
+    }
+    /** Start a listener to verify when the editText height is changed by user
+     *
+     */
+    public void startEdtHeightListener(){
+        TextInputEditText edtHeight = (TextInputEditText)findViewById(R.id.settings_height_edt);
+        edtHeight.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-            //Mesmas verificações, só que no campo de altura -------------------------------------------------------------
+            //Same verifications, but in editText for height
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int after) {
 
-
+                /* check if the height is higher than min and lower than max
+                 * and if the user entered with 3 or more digits
+                 */
                 if(s.length()==3){
 
                     if(Integer.parseInt(s.toString()) < MAX_HEIGHT){
@@ -125,9 +193,14 @@ public class SettingsActivity extends AppCompatActivity{
             public void afterTextChanged(Editable s) {
             }
         });
-        TextInputEditText edtIdade = (TextInputEditText) findViewById(R.id.settings_age_edt);
-        edtIdade.addTextChangedListener(new TextWatcher() {
-            //Mesmas verificações, mas no campo de idade -------------------------------------------------------------
+    }
+    /** Start a listener to verify when the editText age is changed by user
+     *
+     */
+    public void startEdtAgeListener(){
+        TextInputEditText edtAge = (TextInputEditText) findViewById(R.id.settings_age_edt);
+        edtAge.addTextChangedListener(new TextWatcher() {
+            //Same verifications, but in editText for age
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -155,19 +228,25 @@ public class SettingsActivity extends AppCompatActivity{
             public void afterTextChanged(Editable s) {
             }
         });
-        final Spinner spinnerSexo = (Spinner) findViewById(R.id.settings_gender_spinner);
+    }
+
+    /** Start the spinner to choose the gender
+     *
+     */
+    public void startSpinnerGender(){
+        final Spinner spinnerGender = (Spinner) findViewById(R.id.settings_gender_spinner);
 
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this,
-                R.array.imb_sexo_array, android.R.layout.simple_spinner_item);
+                R.array.bmr_gender_array, android.R.layout.simple_spinner_item);
 
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinnerSexo.setAdapter(arrayAdapter);
+        spinnerGender.setAdapter(arrayAdapter);
 
-        spinnerSexo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Person.setGender(spinnerSexo.getSelectedItem().toString());
+                Person.setGender(spinnerGender.getSelectedItem().toString());
             }
 
             @Override
@@ -175,10 +254,15 @@ public class SettingsActivity extends AppCompatActivity{
 
             }
         });
+    }
 
+    /** Start the spinner to choose the frequency of physical activities
+     *
+     */
+    private void startSpinnerExerc(){
         final Spinner spinnerExerc = (Spinner) findViewById(R.id.settings_physical_act_spinner);
 
-        arrayAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.freq_exerc_array, android.R.layout.simple_spinner_item);
 
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -195,44 +279,6 @@ public class SettingsActivity extends AppCompatActivity{
 
             }
         });
-    }
-    @Override
-    public void onResume(){
-        super.onResume();
-        this.validWeight = false;
-        this.validHeight = false;
-        this.validAge = false;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Se clicar para voltar no seta da toolbar, retorna a activity principal
-        finish();
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    public void save(View view){
-
-        EditText edtWeight = (EditText) findViewById(R.id.settings_weight_edt);
-        EditText edtHeight = (EditText) findViewById(R.id.settings_height_edt);
-        EditText edtAge = (EditText) findViewById(R.id.settings_age_edt);
-
-        if(validWeight){
-            Person.setWeight(Integer.parseInt(edtWeight.getText().toString()));
-            HealthController.setWeightExists(validWeight);
-        }
-        if(validHeight){
-            Person.setHeight(Integer.parseInt(edtHeight.getText().toString()));
-            HealthController.setHeightExists(validHeight);
-        }
-
-        if(validAge){
-            Person.setAge(Integer.parseInt(edtAge.getText().toString()));
-            HealthController.setAgeExists(validAge);
-        }
-        finish();
-
     }
 
 

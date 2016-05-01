@@ -2,7 +2,7 @@
 <resources>
     <string name="gender">Sexo</string>
 
-    <string-array name="imb_sexo_array">
+    <string-array name="bmr_gender_array">
         <item>Masculino</item>
         <item>Feminino</item>
     </string-array>

@@ -1,7 +1,7 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.view;
 
 /**
- * Created by paulo on 05/04/16.
+ *
  */
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +19,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
+        //return a fragment according to the ViewPager position
         switch (position) {
             case 0:
                 return new ProfileFragment();

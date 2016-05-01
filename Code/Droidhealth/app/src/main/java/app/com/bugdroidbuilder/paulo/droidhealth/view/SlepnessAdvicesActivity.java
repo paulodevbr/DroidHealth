@@ -9,27 +9,32 @@ import android.view.MenuItem;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 
-public class SlepnessAdvicesActivity extends AppCompatActivity {
+public class SlepnessAdvicesActivity extends AppCompatActivity implements ToolbarInterface{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slepness_advices);
+        startToolbar();
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dicas_sono);
-        setSupportActionBar(toolbar);
-        //Habilita o botão de sair na toolbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // Seta o icone do botao de sair e sua cor
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        upArrow.setColorFilter(getResources().getColor(R.color.colorTabStrip), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Se clicar para voltar no seta da toolbar, retorna a activity principal
+        // If the user click to go back, the app goes to MainActivity
         finish();
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void startToolbar() {
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dicas_sono);
+        setSupportActionBar(toolbar);
+        //Setup the button to quit this activity
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Set the color of the arrow
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.colorTabStrip), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 }

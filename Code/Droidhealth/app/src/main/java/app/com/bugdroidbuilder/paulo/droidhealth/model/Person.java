@@ -1,7 +1,7 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.model;
 
-/**
- * Created by paulo on 02/04/16.
+/** static class that CRUD user information among all activities
+ *
  */
 public class Person {
     private static float weight;
@@ -12,6 +12,7 @@ public class Person {
 
     private static float BMI;//Body Mass Index
     private static float BMR;//Basal Metabolic Rate
+    private static float HDR;//hydration per day
     private static int idealWeight;
     private static int difIdealWeight;
 
@@ -35,6 +36,20 @@ public class Person {
     public static String getStringWeight() {
         return stringWeight.toString();
     }
+    public static void setDifIdealWeight(int dif) {
+        Person.difIdealWeight = dif;
+    }
+
+    public static int getDifIdealWeight() {
+        return difIdealWeight;
+    }
+
+
+
+    public static String getStringHeight() {
+        return stringHeight.toString();
+    }
+
 
     public static float getHeight() {
         return height;
@@ -69,12 +84,21 @@ public class Person {
         Person.qntPhysicalActivies = qntPhysicalActivies;
     }
 
+    public static float getHDR() {
+        return HDR;
+    }
+
+    public static void setHDR(float HDR) {
+        Person.HDR = HDR;
+        Person.stringHDR = new StringBuilder().append("Consumo de água recomendado: ").append(HDR).append(" litros/dia");
+    }
+
     public static String getStringHDR() {
         return stringHDR.toString();
     }
 
     public static void setStringHDR(String qntWater) {
-        Person.stringHDR = new StringBuilder().append("Consumo de água recomendado: ").append(qntWater).append(" litros/dia");
+        Person.stringHDR = new StringBuilder().append(qntWater);
     }
 
     public static float getBMI() {
@@ -117,18 +141,5 @@ public class Person {
         Person.stringBMR = new StringBuilder().append(stringBMR);
     }
 
-    public static void setDifIdealWeight(int dif) {
-        Person.difIdealWeight = dif;
-    }
-
-    public static int getDifIdealWeight() {
-        return difIdealWeight;
-    }
-
-
-
-    public static String getStringHeight() {
-        return stringHeight.toString();
-    }
 
 }

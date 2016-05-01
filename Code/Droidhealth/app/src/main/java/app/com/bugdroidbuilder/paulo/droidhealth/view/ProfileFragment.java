@@ -27,6 +27,8 @@ public class ProfileFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         Button btConfig = (Button) getActivity().findViewById(R.id.bt_go_settings);
+
+        //create a listener to a "insert data" button, that goes directly to SettingsActivity
         btConfig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

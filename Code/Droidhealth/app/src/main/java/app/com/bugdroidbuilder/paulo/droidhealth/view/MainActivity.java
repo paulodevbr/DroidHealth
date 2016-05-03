@@ -7,21 +7,20 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
+import app.com.bugdroidbuilder.paulo.droidhealth.controller.PreferencesDAO;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.Person;
 
 /**
- *
+ * Created by paulo on 13/04/16.
  */
 public class MainActivity extends AppCompatActivity implements ToolbarInterface {
 
-    public SharedPreferences settings;
-    public static final String PREFS_NAME = "MyPrefsFile";
-
-    HealthController healthController;
+    PreferencesDAO preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +28,15 @@ public class MainActivity extends AppCompatActivity implements ToolbarInterface 
         setContentView(R.layout.main_activity);
         startToolbar();
         startTabControl();
-        healthController = new HealthController();
-        // Restore preferences
-        this.settings = getSharedPreferences(PREFS_NAME, 0);
-        if(settings.getBoolean("saved", false)){
-            restoreUserData();
-        }
-
-
-
+        this.preferences = new PreferencesDAO(this);
+        this.preferences.restoreUserData();
     }
 
+
     @Override
-    protected void onResume(){
-        super.onResume();
-        healthController.showReview(this);
+    protected void onStop(){
+        super.onStop();
+        this.preferences.storeUserData();
     }
 
 
@@ -92,14 +85,19 @@ public class MainActivity extends AppCompatActivity implements ToolbarInterface 
 
             }
         });
-
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-
+        // if this option is selected, the app goes to SettingsActivity
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
@@ -108,35 +106,10 @@ public class MainActivity extends AppCompatActivity implements ToolbarInterface 
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onStop(){
-        super.onStop();
-        SharedPreferences.Editor editor = this.settings.edit();
-        if(HealthController.pesoExists()){
-            editor.putBoolean("pesoExists", HealthController.pesoExists());
-            editor.putFloat("peso", Person.getWeight());
-            editor.putString("hdrString", Person.getStringHDR());
-        }
 
-        // Commit the edits!
-        editor.putBoolean("saved", true);
-        editor.apply();
-    }
 
-    /** Restore persistent user data
-     *
-     */
-    private void restoreUserData(){
 
-        //Verifica se o peso ja foi inserido alguma vez no app
-        if(this.settings.getBoolean("pesoExists", false)){
-            //se sim, a variavel PesoExists é setada pra verdadeiro
 
-            HealthController.setWeightExists(true);
-            Person.setWeight(this.settings.getFloat("peso", 0));
-            Person.setStringHDR(this.settings.getString("hdrString", null));
-        }
-    }
 
     public static void main(String args) {
 

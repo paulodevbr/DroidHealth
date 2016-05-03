@@ -4,5 +4,5 @@
 
     <string name="no_information_title">Nenhuma informação</string>
     <string name="better_information">Para melhores informações, insira mais dados nas configurações do app</string>
-    <string name="insert_data">Ir para <b>Configurações</b></string>
+    <string name="insert_data">Inserir dados</string>
 </resources>

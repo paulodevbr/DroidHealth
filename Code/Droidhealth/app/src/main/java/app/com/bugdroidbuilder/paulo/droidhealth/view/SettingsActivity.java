@@ -198,8 +198,8 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
      *
      */
     public void startEdtAgeListener(){
-        TextInputEditText edtAge = (TextInputEditText) findViewById(R.id.settings_age_edt);
-        edtAge.addTextChangedListener(new TextWatcher() {
+        TextInputEditText edtIdade = (TextInputEditText) findViewById(R.id.settings_age_edt);
+        edtIdade.addTextChangedListener(new TextWatcher() {
             //Same verifications, but in editText for age
 
             @Override

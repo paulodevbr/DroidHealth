@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/bmi_text_view"
+                android:id="@+id/imc_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/no_information_title"
@@ -57,7 +57,7 @@
             android:layout_marginRight="16dp">
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/height_text_view"
+                android:id="@+id/altura_text_view"
                 android:text="@string/no_information_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,15 +66,15 @@
                 android:textSize="16sp"/>
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/weight_text_view"
-                android:text=" "
+                android:id="@+id/peso_text_view"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:textSize="16sp"/>
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/hdr_text_view"
+                android:id="@+id/qnt_agua_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -82,7 +82,7 @@
                 android:textSize="16sp"/>
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/calories_per_day"
+                android:id="@+id/qnt_calorias_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""

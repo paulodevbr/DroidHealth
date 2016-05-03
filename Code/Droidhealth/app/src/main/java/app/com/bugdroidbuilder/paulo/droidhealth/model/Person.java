@@ -7,8 +7,7 @@ public class Person {
     private static float weight;
     private static float height;
     private static int age;
-    private static String gender;
-    private static String qntPhysicalActivies;
+
 
     private static float BMI;//Body Mass Index
     private static float BMR;//Basal Metabolic Rate
@@ -16,6 +15,8 @@ public class Person {
     private static int idealWeight;
     private static int difIdealWeight;
 
+    private static StringBuilder gender;
+    private static StringBuilder qntPhysicalActivies;
     private static StringBuilder stringHDR;
     private static StringBuilder stringWeight;
     private static StringBuilder stringHeight;
@@ -69,19 +70,19 @@ public class Person {
     }
 
     public static String getGender() {
-        return gender;
+        return gender.toString();
     }
 
     public static void setGender(String gender) {
-        Person.gender = gender;
+        Person.gender = new StringBuilder().append(gender);
     }
 
     public static String getQntPhysicalActivies() {
-        return qntPhysicalActivies;
+        return qntPhysicalActivies.toString();
     }
 
     public static void setQntPhysicalActivies(String qntPhysicalActivies) {
-        Person.qntPhysicalActivies = qntPhysicalActivies;
+        Person.qntPhysicalActivies = new StringBuilder().append(qntPhysicalActivies);
     }
 
     public static float getHDR() {
@@ -90,11 +91,11 @@ public class Person {
 
     public static void setHDR(float HDR) {
         Person.HDR = HDR;
-        Person.stringHDR = new StringBuilder().append("Consumo de água recomendado: ").append(HDR).append(" litros/dia");
+        Person.stringHDR = new StringBuilder().append("Consumo de água recomendado: ").append(Float.toString(HDR)).append(" litros/dia");
     }
 
     public static String getStringHDR() {
-        return stringHDR.toString();
+        return Person.stringHDR.toString();
     }
 
     public static void setStringHDR(String qntWater) {

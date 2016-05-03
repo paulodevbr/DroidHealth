@@ -7,6 +7,7 @@ public final class CalcHealth {
 
     /** Calculate the hydration per day according to user weight
      *
+     * @return Hydration per day string ready to be shown
      */
     public void calcHDR(){
         float peso = Person.getWeight();
@@ -17,6 +18,7 @@ public final class CalcHealth {
 
     /** Calculate the Body Mass Index and return the health condition
      *
+     * @return a string ready to be shown which contains the health condition according to the BMI
      */
     public void calcBMI(){
         //calculate BMI, and height is divided by 100 because is needed to be in meters
@@ -27,7 +29,6 @@ public final class CalcHealth {
         Person.setDifIdealWeight(calcKgToIdealWeight());
         Person.setBMI((float)bmi);
         Person.setStringBMI(returnHealthCondition(bmi));
-
     }
 
 
@@ -41,7 +42,7 @@ public final class CalcHealth {
 
     /** Verify the Body Metabolic Index result and return the health condition
      *
-     * @param bmi Body Mass Index
+     * @param bmi
      * @return health condition
      */
     public String returnHealthCondition(double bmi){
@@ -74,8 +75,9 @@ public final class CalcHealth {
 
     /** Calculate the Basal Metabolic Rate
      *
+     * @return Basal Metabolic Rate ready to be shown
      */
-    public void calcBMR(){
+    public String calcBMR(){
         float weight = Person.getWeight();
         float height = Person.getHeight();
         float age = Person.getAge();
@@ -86,16 +88,18 @@ public final class CalcHealth {
         switch(gender){
 
             case"Masculino":
-                //Calculate Basal Metabolic Rate for men
+                //Calculate male Basal Metabolic Rate
                 bmr = (66 + (13.8 * weight) + (5 * height) - (6.8 * age)) * qntPhysicalAct;
                 Person.setBMR((float)bmr);
+                return Person.getStringBMR();
 
             case"Feminino":
-                //Calculate Basal Metabolic Rate for women
+                //Calculate female Basal Metabolic Rate
                 bmr = (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)) * qntPhysicalAct;
                 Person.setBMR((float)bmr);
+                return Person.getStringBMR();
             default:
-
+                return Double.toString(0.00);
         }
 
     }

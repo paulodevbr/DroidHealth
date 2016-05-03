@@ -9,9 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
+import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
 
 public class ProfileFragment extends Fragment {
-
+    HealthController healthController = new HealthController();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,12 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        healthController.showReview(getActivity());
     }
 
 

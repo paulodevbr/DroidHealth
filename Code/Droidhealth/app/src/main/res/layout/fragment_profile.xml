@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ProfileFragment"
+    tools:context=".view.profile.ProfileFragment"
     android:theme="@style/AppTheme"
     android:background="@color/colorBackground">
 
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/no_information_title"
-                android:textSize="32sp"
+                android:textSize="28sp"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:textSize="16sp"/>
 
             <android.support.v7.widget.AppCompatTextView
@@ -94,7 +94,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".view.ProfileFragment">
+            tools:context=".view.profile.ProfileFragment">
 
             <android.widget.Button
                 android:id="@+id/bt_go_settings"
@@ -104,15 +104,10 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:layout_marginBottom="32dp"
-                android:text="@string/insert_data"
+                android:text="@string/go_to_settings"
                 android:textColor="@color/colorTitleText"
                 android:background="@color/colorAccent" />
         </RelativeLayout>
-
-
-
-
-
 
     </LinearLayout>
     </FrameLayout>

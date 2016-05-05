@@ -15,17 +15,17 @@ public class HealthController {
 
     private CalcHealth calculator;
 
-    private boolean hasButton = true;
+//    private boolean hasButton = true;
 
     private static boolean weightExists = false;
     private static boolean heightExists = false;
     private static boolean ageExists = false;
+    private static boolean genderExists = false;
+    private static boolean physicalActExists = false;
 
     public HealthController(){
         this.calculator = new CalcHealth();
     }
-
-
 
     public void showReview(Activity mainActivity){
        Button btSettings = (Button) mainActivity.findViewById(R.id.bt_go_settings);
@@ -33,12 +33,6 @@ public class HealthController {
         if(weightExists ){
             showHDR(mainActivity);
             if(heightExists){
-
-                if(hasButton){
-                    ViewGroup layout = (ViewGroup) btSettings.getParent();
-                    layout.removeView(btSettings);
-                    hasButton = false;
-                }
 
                 showBMI(mainActivity);
                 if(ageExists){

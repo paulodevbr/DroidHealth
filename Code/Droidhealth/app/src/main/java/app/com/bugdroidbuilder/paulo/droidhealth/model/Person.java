@@ -4,8 +4,8 @@ package app.com.bugdroidbuilder.paulo.droidhealth.model;
  *
  */
 public class Person {
-    private static float weight;
-    private static float height;
+    private static int weight;
+    private static int height;
     private static int age;
 
 
@@ -23,7 +23,7 @@ public class Person {
     private static StringBuilder stringBMI;
     private static StringBuilder stringBMR;
 
-    public static float getWeight() {
+    public static int getWeight() {
         return weight;
     }
 
@@ -52,7 +52,7 @@ public class Person {
     }
 
 
-    public static float getHeight() {
+    public static int getHeight() {
         return height;
     }
 

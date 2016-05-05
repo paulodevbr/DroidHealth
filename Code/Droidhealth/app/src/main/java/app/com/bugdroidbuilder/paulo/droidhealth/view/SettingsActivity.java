@@ -53,9 +53,9 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
     public void onResume(){
         //When entering this activity set all values to false, in order to avoid taking invalid information
         super.onResume();
-        this.validWeight = false;
-        this.validHeight = false;
-        this.validAge = false;
+        this.validWeight = HealthController.weightExists();
+        this.validHeight = HealthController.heightExists();
+        this.validAge = HealthController.ageExists();
     }
 
     @Override
@@ -63,35 +63,6 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
         // If the user touch in the toolbar arrow, finish this activity and go back to main
         finish();
         return super.onOptionsItemSelected(item);
-    }
-
-    /** Save the information entered by the user
-     *
-     * @param view Floating Action Button save
-     */
-    public void save(View view) {
-
-        EditText edtWeight = (EditText) findViewById(R.id.settings_weight_edt);
-        EditText edtHeight = (EditText) findViewById(R.id.settings_height_edt);
-        EditText edtAge = (EditText) findViewById(R.id.settings_age_edt);
-
-        //Verify if the information entered is valid
-
-        if (validWeight) {
-            Person.setWeight(Integer.parseInt(edtWeight.getText().toString()));
-            HealthController.setWeightExists(validWeight);
-        }
-        if (validHeight) {
-            Person.setHeight(Integer.parseInt(edtHeight.getText().toString()));
-            HealthController.setHeightExists(validHeight);
-        }
-
-        if (validAge) {
-            Person.setAge(Integer.parseInt(edtAge.getText().toString()));
-            HealthController.setAgeExists(validAge);
-        }
-        finish();
-
     }
 
 
@@ -113,6 +84,9 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
     public void startEdtWeightListener(){
         TextInputEditText edtWeight = (TextInputEditText) findViewById(R.id.settings_weight_edt);
         //
+        if(HealthController.weightExists()){
+            edtWeight.setText(Integer.toString(Person.getWeight()));
+        }
         edtWeight.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -160,6 +134,11 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
      */
     public void startEdtHeightListener(){
         TextInputEditText edtHeight = (TextInputEditText)findViewById(R.id.settings_height_edt);
+
+        if(HealthController.weightExists()){
+            edtHeight.setText(Integer.toString(Person.getHeight()));
+        }
+
         edtHeight.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -198,8 +177,13 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
      *
      */
     public void startEdtAgeListener(){
-        TextInputEditText edtIdade = (TextInputEditText) findViewById(R.id.settings_age_edt);
-        edtIdade.addTextChangedListener(new TextWatcher() {
+        TextInputEditText edtAge = (TextInputEditText) findViewById(R.id.settings_age_edt);
+
+        if(HealthController.weightExists()){
+            edtAge.setText(Integer.toString(Person.getAge()));
+        }
+
+        edtAge.addTextChangedListener(new TextWatcher() {
             //Same verifications, but in editText for age
 
             @Override
@@ -243,6 +227,13 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
 
         spinnerGender.setAdapter(arrayAdapter);
 
+        //verify if this spinner was already set, and if yes, set to the previous item selected
+        if(HealthController.weightExists() || HealthController.heightExists()
+                || HealthController.ageExists()){
+            int position = arrayAdapter.getPosition(Person.getGender());
+            spinnerGender.setSelection(position);
+        }
+        // if some item is selected, store the selected value
         spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -265,10 +256,22 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.freq_exerc_array, android.R.layout.simple_spinner_item);
 
+
+
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerExerc.setAdapter(arrayAdapter);
 
+        //verify if this spinner was already set, and if yes, set to the previous item selected
+        if(HealthController.weightExists() || HealthController.heightExists()
+                || HealthController.ageExists()){
+
+            int position = arrayAdapter.getPosition(Person.getQntPhysicalActivies());
+            spinnerExerc.setSelection(position);
+        }
+
+
         spinnerExerc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            // if some item is selected, store the selected value
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Person.setQntPhysicalActivies(spinnerExerc.getSelectedItem().toString());
@@ -279,6 +282,35 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
 
             }
         });
+    }
+
+    /** Save the information entered by the user
+     *
+     * @param view Floating Action Button saveSettings
+     */
+    public void saveSettings(View view) {
+
+        EditText edtWeight = (EditText) findViewById(R.id.settings_weight_edt);
+        EditText edtHeight = (EditText) findViewById(R.id.settings_height_edt);
+        EditText edtAge = (EditText) findViewById(R.id.settings_age_edt);
+
+        //Verify if the information entered is valid
+
+        if (validWeight) {
+            Person.setWeight(Integer.parseInt(edtWeight.getText().toString()));
+            HealthController.setWeightExists(validWeight);
+        }
+        if (validHeight) {
+            Person.setHeight(Integer.parseInt(edtHeight.getText().toString()));
+            HealthController.setHeightExists(validHeight);
+        }
+
+        if (validAge) {
+            Person.setAge(Integer.parseInt(edtAge.getText().toString()));
+            HealthController.setAgeExists(validAge);
+        }
+        finish();
+
     }
 
 

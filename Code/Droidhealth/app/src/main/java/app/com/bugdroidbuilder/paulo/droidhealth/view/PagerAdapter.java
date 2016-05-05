@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import app.com.bugdroidbuilder.paulo.droidhealth.view.advices.AdvicesFragment;
+import app.com.bugdroidbuilder.paulo.droidhealth.view.profile.ProfileFragment;
+
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;

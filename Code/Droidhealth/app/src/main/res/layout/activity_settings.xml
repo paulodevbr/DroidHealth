@@ -169,7 +169,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/fab_save"
-                            android:onClick="save"/>
+                            android:onClick="saveSettings"/>
                     </RelativeLayout>
 
             </LinearLayout>

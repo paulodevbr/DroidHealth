@@ -1,4 +1,4 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view;
+package app.com.bugdroidbuilder.paulo.droidhealth.view.advices;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +34,5 @@ public class AdvicesFragment extends Fragment {
             }
         });
     }
-
 
 }

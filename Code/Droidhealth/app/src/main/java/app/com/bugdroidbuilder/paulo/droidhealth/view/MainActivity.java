@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity implements ToolbarInterface 
         startToolbar();
         startTabControl();
         this.preferences = new PreferencesDAO(this);
-        this.preferences.restoreUserData();
+        if(this.preferences.hasDataStored()){
+            this.preferences.restoreUserData();
+        }
+
     }
 
 

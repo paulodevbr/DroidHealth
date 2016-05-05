@@ -1,4 +1,4 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view;
+package app.com.bugdroidbuilder.paulo.droidhealth.view.advices;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -8,8 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
+import app.com.bugdroidbuilder.paulo.droidhealth.view.ToolbarInterface;
 
-public class SlepnessAdvicesActivity extends AppCompatActivity implements ToolbarInterface{
+public class SlepnessAdvicesActivity extends AppCompatActivity implements ToolbarInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

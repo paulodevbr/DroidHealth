@@ -7,7 +7,6 @@ public final class CalcHealth {
 
     /** Calculate the hydration per day according to user weight
      *
-     * @return Hydration per day string ready to be shown
      */
     public void calcHDR(){
         float peso = Person.getWeight();
@@ -18,7 +17,6 @@ public final class CalcHealth {
 
     /** Calculate the Body Mass Index and return the health condition
      *
-     * @return a string ready to be shown which contains the health condition according to the BMI
      */
     public void calcBMI(){
         //calculate BMI, and height is divided by 100 because is needed to be in meters
@@ -42,7 +40,7 @@ public final class CalcHealth {
 
     /** Verify the Body Metabolic Index result and return the health condition
      *
-     * @param bmi
+     * @param bmi body mass index
      * @return health condition
      */
     public String returnHealthCondition(double bmi){
@@ -110,7 +108,7 @@ public final class CalcHealth {
      */
     public double checkQntPhysicalAct() {
         String qntExercString = Person.getQntPhysicalActivies();
-        double valQntExerc;
+        double valQntExerc = 0;
         switch (qntExercString){
             case "Sedentário":
                 valQntExerc = 1.2;
@@ -125,7 +123,6 @@ public final class CalcHealth {
                 valQntExerc =1.9;
                 break;
             default:
-                valQntExerc = 0.2;// valor 0.2 para teste
                 break;
 
         }

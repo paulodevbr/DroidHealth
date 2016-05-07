@@ -1,0 +1,79 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.advices.AdvicesFragment"
+    android:background="@color/colorBackground">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#fafafa"
+        android:elevation="4dp"
+        android:translationZ="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/card_sleep_advices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/sleep_title"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/sleepness_title_icon"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sleep_title"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+        <FrameLayout
+            android:id="@+id/advices_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorTextTabUnselected">
+        </FrameLayout>
+        <LinearLayout
+            android:id="@+id/card_eating_advices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/eating_title"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/food_icon" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eating_title"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

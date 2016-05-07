@@ -11,7 +11,6 @@
     android:layout_alignParentTop="true"
     android:background="?attr/colorPrimary"
     android:elevation="6dp"
-    android:title="@string/sono_title"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/healthToolBar"
     app:popupTheme="@style/healthToolBar" />
@@ -28,7 +27,7 @@
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_dicas_sono"
+            android:id="@+id/card_sleep_advices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -42,70 +41,70 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="16dp"
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica1_sono"
+                android:text="@string/sleep_advice1"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica2_sono"
+                android:text="@string/sleep_advice2"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica3_sono"
+                android:text="@string/sleep_advice3"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica4_sono"
+                android:text="@string/sleep_advice4"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica5_sono"
+                android:text="@string/sleep_advice5"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica6_sono"
+                android:text="@string/sleep_advice6"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica7_sono"
+                android:text="@string/sleep_advice7"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica8_sono"
+                android:text="@string/sleep_advice8"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica9_sono"
+                android:text="@string/sleep_advice9"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dica10_sono"
+                android:text="@string/sleep_advice10"
                 android:layout_marginTop="20dp"
                 android:textSize="16sp"/>
         </LinearLayout>

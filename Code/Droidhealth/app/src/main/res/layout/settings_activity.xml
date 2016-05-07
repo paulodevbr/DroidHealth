@@ -161,8 +161,9 @@
 
                     </android.support.v7.widget.AppCompatSpinner>
                     <RelativeLayout
+                        android:layout_marginTop="40dp"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp">
+                        android:layout_height="80dp">
                         <android.support.design.widget.FloatingActionButton
                             android:id="@+id/fab_save"
                             android:layout_width="wrap_content"

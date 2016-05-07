@@ -1,4 +1,4 @@
-package app.com.bugdroidbuilder.paulo.droidhealth.view.advices;
+package app.com.bugdroidbuilder.paulo.droidhealth.view;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -8,14 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
-import app.com.bugdroidbuilder.paulo.droidhealth.view.ToolbarInterface;
 
-public class SlepnessAdvicesActivity extends AppCompatActivity implements ToolbarInterface {
+public class InformationActivity extends AppCompatActivity implements ToolbarInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.advices_slepness_activity);
+        setContentView(R.layout.information_activity);
         startToolbar();
 
     }
@@ -29,12 +28,11 @@ public class SlepnessAdvicesActivity extends AppCompatActivity implements Toolba
 
     @Override
     public void startToolbar() {
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_dicas_sono);
-        toolbar.setTitle(getResources().getString(R.string.sleep_name));
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.information_toolbar);
+        toolbar.setTitle(getResources().getString(R.string.title_information));
         setSupportActionBar(toolbar);
         //Setup the button to quit this activity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //Set the color of the arrow
         final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(getResources().getColor(R.color.colorTabStrip), PorterDuff.Mode.SRC_ATOP);

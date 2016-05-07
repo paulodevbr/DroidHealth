@@ -11,8 +11,8 @@
 
     <string-array name="freq_exerc_array">
         <item>Sedentário</item>
-        <item>Exercícios leves (1 a 3 dias por semana)</item>
-        <item>Exercícios intensos (6 a 7 dias por semana)</item>
-        <item>Exercícios intensos diariamente</item>
+        <item>1 a 3 dias por semana</item>
+        <item>6 a 7 dias por semana</item>
+        <item>Intensos diariamente</item>
     </string-array>
 </resources>

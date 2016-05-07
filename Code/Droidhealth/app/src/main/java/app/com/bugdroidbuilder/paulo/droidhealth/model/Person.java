@@ -1,5 +1,7 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.model;
 
+import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
+
 /** static class that CRUD user information among all activities
  *
  */
@@ -15,42 +17,52 @@ public class Person {
     private static int idealWeight;
     private static int difIdealWeight;
 
-    private static StringBuilder gender;
-    private static StringBuilder qntPhysicalActivies;
-    private static StringBuilder stringHDR;
-    private static StringBuilder stringWeight;
-    private static StringBuilder stringHeight;
-    private static StringBuilder stringBMI;
-    private static StringBuilder stringBMR;
+
+    private static StringBuilder gender, qntPhysicalActivies, stringHDR, stringWeight, stringIdealWeight,
+            stringHeight, stringBMI, stringBMR, stringAdviceWeight;
 
     public static int getWeight() {
         return weight;
     }
 
-    public static void setWeight(float weight) {
-        Person.weight = (int) weight;
-        Person.stringWeight = new StringBuilder().append("Peso: ").append(Person.weight).append(" Kg");
+    public static void setAdviceWeight(int calories) {
+        if(HealthController.isLowerWeight()){
+            Person.stringAdviceWeight = new StringBuilder().append("Para ganhar peso: ")
+                    .append(calories).append(" kcal/dia");
+
+        }else if (HealthController.isHigherWeight()){
+            Person.stringAdviceWeight = new StringBuilder().append("Para perder peso: ")
+                    .append(calories).append(" kcal/dia");
+        }else{
+            Person.stringAdviceWeight = new StringBuilder().append("Parabens, continue assim! ");
+        }
+
     }
-    public static void setStringWeight(String _pesoString) {
-        Person.stringWeight = new StringBuilder().append(_pesoString);
+
+    public static String getStringAdviceWeight() {
+        return stringAdviceWeight.toString();
     }
+
     public static String getStringWeight() {
         return stringWeight.toString();
     }
+
+    public static void setIdealWeight(int idealWeight) {
+        Person.idealWeight = idealWeight;
+        Person.stringIdealWeight = new StringBuilder().append("Ideal: ").append(idealWeight).append(" Kg");
+    }
+
+    public static String getStringIdealWeight() {
+        return Person.stringIdealWeight.toString();
+    }
+
     public static void setDifIdealWeight(int dif) {
         Person.difIdealWeight = dif;
     }
 
-    public static int getDifIdealWeight() {
-        return difIdealWeight;
-    }
-
-
-
     public static String getStringHeight() {
         return stringHeight.toString();
     }
-
 
     public static int getHeight() {
         return height;
@@ -91,7 +103,7 @@ public class Person {
 
     public static void setHDR(float HDR) {
         Person.HDR = HDR;
-        Person.stringHDR = new StringBuilder().append("Consumo de água recomendado: ").append(Float.toString(HDR)).append(" litros/dia");
+        Person.stringHDR = new StringBuilder().append("Hidratação: ").append(Float.toString(HDR)).append(" litros/dia");
     }
 
     public static String getStringHDR() {
@@ -116,20 +128,18 @@ public class Person {
 
     public static void setBMR(float BMR) {
         Person.BMR = BMR;
-        Person.stringBMR = new StringBuilder().append("Gasto de kcal: ").append((int) BMR).append("/dia");
+        Person.stringBMR = new StringBuilder().append("Gasto de calorias: ").append((int) BMR).append(" kcal/dia");
     }
 
     public static String getStringBMR() {
         return stringBMR.toString();
     }
 
-    public static int getPesoIdeal() {
+    public static int getIdealWeight() {
         return idealWeight;
     }
 
-    public static void setPesoIdeal(int pesoIdeal) {
-        Person.idealWeight = pesoIdeal;
-    }
+
 
     public static String getStringBMI() {
         return stringBMI.toString();
@@ -140,6 +150,11 @@ public class Person {
     }
     public static void setStringBMR(String stringBMR) {
         Person.stringBMR = new StringBuilder().append(stringBMR);
+    }
+
+    public static void setWeight(float gainWeightCalories) {
+        Person.weight = (int) gainWeightCalories;
+        Person.stringWeight = new StringBuilder().append("Peso: ").append(Person.weight).append(" Kg");
     }
 
 

@@ -1,7 +1,8 @@
 <resources>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/app_icon</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="colorPrimaryDark">@color/colorBackground</item>
 
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">

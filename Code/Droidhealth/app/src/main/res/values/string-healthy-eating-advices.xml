@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="eating_name">Alimentação</string>
+    <string name="eating_title">
+        <b>5 dicas para melhorar a alimentação</b>
+    </string>
+
+    <string name="eating_advice1">
+        <b>1. Água antes de comer</b>\n\n
+
+        O corpo precisa de oito a dez copos todo dia. O truque é quando tomar.
+        Anote: dois copos de água uma hora antes do café da manhã, do almoço
+        e do jantar. Antes de cada lanche, mais um copo.
+    </string>
+
+    <string name="eating_advice2">
+        <b>2. Café da manhã todos os dias</b>\n\n
+
+        Pesquisas comprovam que quem toma um café da manhã nutritivo corre
+        menos risco de comer feito uma leoa nas outras refeições. Além disso,
+        você garante mais pique e concentração.
+    </string>
+
+    <string name="eating_advice3">
+        <b>3. Mais refeições</b>\n\n
+
+        O ideal é comer a cada três ou quatro horas. Se você toma o café
+        da manhã às 7 h, faça um lanche às 10 h, almoce às 13 h, lanche
+        às 16 h e jante às 20 h.
+    </string>
+
+    <string name="eating_advice4">
+        <b>4. Mastigue, mastigue e mastigue </b>\n\n
+
+        Quanto mais você mastigar os alimentos, melhor para a digestão e
+        para espantar os quilos extras. A saciedade tem a ver com o tempo
+        que levamos para comer. A partir de 20 minutos de mastigação, o
+        cérebro começa a receber mensagens de que o corpo já está satisfeito.
+        Se terminar a refeição antes desse tempo, vai querer repetir o prato.
+    </string>
+
+    <string name="eating_advice5">
+        <b>5. Diversidade na alimentação</b>\n\n
+
+        A diversidade dos alimentos é fundamental, pois não existem alimentos
+        completos capazes de fornecer ao organismo toda a gama de nutrientes
+        requeridos para sua manutenção, preservando-lhe a saúde. Então a premissa
+        da boa alimentação está fundamentada, principalmente, na diversificação
+        de alimentos ofertados em quantidades adequadas, o que não significa dizer exagero
+    </string>
+
+</resources>

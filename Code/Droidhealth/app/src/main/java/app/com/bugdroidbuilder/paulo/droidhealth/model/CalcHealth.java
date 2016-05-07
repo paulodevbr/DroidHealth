@@ -1,9 +1,16 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.model;
 
-/** Class that can calculate Body Mass Index, Basal Metabolic Rate, and the hidration according to user data
+import app.com.bugdroidbuilder.paulo.droidhealth.R;
+import app.com.bugdroidbuilder.paulo.droidhealth.controller.HealthController;
+
+
+
+/** Class able to calculate Body Mass Index, Basal Metabolic Rate, and the hidration according to user data
  *
  */
 public final class CalcHealth {
+
+
 
     /** Calculate the hydration per day according to user weight
      *
@@ -22,7 +29,8 @@ public final class CalcHealth {
         //calculate BMI, and height is divided by 100 because is needed to be in meters
         float weight = Person.getWeight();
         float height = Person.getHeight();
-        double bmi = weight/(Math.pow((height/100), 2));
+        height = height/100;
+        double bmi = weight/(Math.pow((height), 2));
         // calculate the ideal weight and store it in class Person
         Person.setDifIdealWeight(calcKgToIdealWeight());
         Person.setBMI((float)bmi);
@@ -31,11 +39,13 @@ public final class CalcHealth {
 
 
     public int calcKgToIdealWeight(){
-        //calcula peso ideal do usuario de acordo com o resultado do IMC
-        // e retorna quantos kg falta perder ou ganhar para atingir este peso
-        Person.setPesoIdeal((int)(Math.pow((Person.getHeight()/100), 2) * 27));
+        //calculate the ideal weight based in BMI
+        //return how many kg is needed to gain or lose, to achieve the ideal weight
+        float height = Person.getHeight();
+        height = height/100;
+        Person.setIdealWeight((int)((Math.pow((height), 2) * 23)));
 
-        return (int)(Person.getPesoIdeal() - Person.getWeight());
+        return (int)(Person.getIdealWeight() - Person.getWeight());
     }
 
     /** Verify the Body Metabolic Index result and return the health condition
@@ -53,19 +63,40 @@ public final class CalcHealth {
         final String OBESIDADE_MORBIDA = "Obesidade mórbida";
 
         if(bmi < 17){
+            HealthController.setLowerWeight(true);
+            HealthController.setHigherWeight(false);
+            HealthController.setColor(R.color.colorBad);
             return MUITO_ABAIXO_DO_PESO;
         }else if(17 <= bmi && bmi <= 18.49){
+            HealthController.setLowerWeight(true);
+            HealthController.setHigherWeight(false);
+            HealthController.setColor(R.color.colorSoSo);
             return ABAIXO_DO_PESO;
         }else if(18.5 <= bmi && bmi <= 24.99){
+            HealthController.setLowerWeight(false);
+            HealthController.setHigherWeight(false);
+            HealthController.setColor(R.color.colorHealthy);
             return NO_PESO;
         }else if(25 <= bmi && bmi <= 29.99){
+            HealthController.setLowerWeight(false);
+            HealthController.setHigherWeight(true);
+            HealthController.setColor(R.color.colorSoSo);
             return ACIMA_DO_PESO;
         }else if(30 <= bmi && bmi <= 34.99){
+            HealthController.setLowerWeight(false);
+            HealthController.setHigherWeight(true);
+            HealthController.setColor(R.color.colorBad);
             return  OBESIDADE;
         }
-        else if(35 <= bmi && bmi >= 39.99){
+        else if(35 <= bmi && bmi <= 39.99){
+            HealthController.setLowerWeight(false);
+            HealthController.setHigherWeight(true);
+            HealthController.setColor(R.color.colorSoBad);
             return OBESIDADE_SEVERA;
         }else{
+            HealthController.setLowerWeight(false);
+            HealthController.setHigherWeight(true);
+            HealthController.setColor(R.color.colorTerrible);
             return OBESIDADE_MORBIDA;
         }
 
@@ -89,12 +120,14 @@ public final class CalcHealth {
                 //Calculate male Basal Metabolic Rate
                 bmr = (66 + (13.8 * weight) + (5 * height) - (6.8 * age)) * qntPhysicalAct;
                 Person.setBMR((float)bmr);
+                checkWeightState();
                 return Person.getStringBMR();
 
             case"Feminino":
                 //Calculate female Basal Metabolic Rate
                 bmr = (655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)) * qntPhysicalAct;
                 Person.setBMR((float)bmr);
+                checkWeightState();
                 return Person.getStringBMR();
             default:
                 return Double.toString(0.00);
@@ -128,6 +161,30 @@ public final class CalcHealth {
         }
         return valQntExerc;
     }
+    // Verify if the user needs to lose or gain weight
+    public void checkWeightState(){
+        if(HealthController.isLowerWeight()){
+            calcCaloriesToGainWeight();
+        }else if(HealthController.isHigherWeight()) {
+            calcCaloriesToLoseWeight();
+        }else Person.setAdviceWeight(0);
+    }
+
+    public void calcCaloriesToLoseWeight(){
+        int calories = 0;
+        float bmr = Person.getBMR();
+        calories =(int) (bmr * 0.75);
+        Person.setAdviceWeight(calories);
+    }
+
+    public void calcCaloriesToGainWeight(){
+        int calories = 0;
+        float bmr = Person.getBMR();
+        calories =(int) (bmr * 1.15);
+        Person.setAdviceWeight(calories);
+    }
+
+
 
 
 

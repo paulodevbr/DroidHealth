@@ -21,12 +21,16 @@ import app.com.bugdroidbuilder.paulo.droidhealth.model.Person;
 
 public class SettingsActivity extends AppCompatActivity implements ToolbarInterface{
 
-    private final int MIN_HEIGHT = 100;
-    private final int MAX_AGE = 120;
-    private final int MIN_AGE = 5;
-    private final int MAX_WEIGHT = 400;
     private final int MAX_HEIGHT = 260;
+    private final int MIN_HEIGHT = 100;
+
+    private final int MAX_AGE = 120;
+    private final int MIN_AGE = 15;
+
+    private final int MAX_WEIGHT = 400;
     private final int MIN_WEIGHT = 30;
+
+
 
     private boolean validWeight = false;
     private boolean validHeight = false;
@@ -37,16 +41,15 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.settings_activity);
         startToolbar();
-
-        healthController = new HealthController();
-
         startEdtWeightListener();
         startEdtHeightListener();
         startEdtAgeListener();
         startSpinnerGender();
         startSpinnerExerc();
+        healthController = new HealthController();
+
 
     }
     @Override
@@ -83,10 +86,11 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
      */
     public void startEdtWeightListener(){
         TextInputEditText edtWeight = (TextInputEditText) findViewById(R.id.settings_weight_edt);
-        //
+        // check if the weight was already set
         if(HealthController.weightExists()){
             edtWeight.setText(Integer.toString(Person.getWeight()));
         }
+
         edtWeight.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -100,20 +104,21 @@ public class SettingsActivity extends AppCompatActivity implements ToolbarInterf
                 /* check if the weight is higher than min and lower than max
                  * and if the user entered with 2 or more digits
                  */
+
                 if(s.length()>=2){
-                    if(Integer.parseInt(s.toString()) < MAX_WEIGHT){
+
+                    if(Integer.parseInt(s.toString())<MAX_WEIGHT){
 
                         if(Integer.parseInt(s.toString()) > MIN_WEIGHT){
-                            /* caso a entrada passe nas 3 verificações, o boolean validWeight
-                            * é setado para verdadeiro
+                            /* If the entering data pass through these 3 verifications, validWeight
+                            * is set to true
                             */
                             validWeight = true;
                         }
 
                     }
-                    /* caso o usuário apague ou altere a entrada, e esta entrada não é válida
-                    * para as verificações anteriores, o boolean validWeight se torna falso
-                    * novamente
+                    /* if the user erase or change the data and it is not valid
+                    * validWeight is set to false again
                     */
                 }else{
                     validWeight = false;

@@ -1,79 +1,156 @@
 package app.com.bugdroidbuilder.paulo.droidhealth.controller;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import app.com.bugdroidbuilder.paulo.droidhealth.R;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.CalcHealth;
 import app.com.bugdroidbuilder.paulo.droidhealth.model.Person;
-import app.com.bugdroidbuilder.paulo.droidhealth.view.MainActivity;
 
 public class HealthController {
 
     private CalcHealth calculator;
-
-//    private boolean hasButton = true;
-
     private static boolean weightExists = false;
     private static boolean heightExists = false;
     private static boolean ageExists = false;
-    private static boolean genderExists = false;
-    private static boolean physicalActExists = false;
+
+    private static boolean higherWeight = false;
+    private static boolean lowerWeight = false;
+    private Activity mainActivity;
+    private static int color = 0;
 
     public HealthController(){
         this.calculator = new CalcHealth();
     }
 
     public void showReview(Activity mainActivity){
-       Button btSettings = (Button) mainActivity.findViewById(R.id.bt_go_settings);
-
+        this.mainActivity = mainActivity;
+        // if the user has inserted weight, it s possible to calculate the hydration
         if(weightExists ){
-            showHDR(mainActivity);
+            showHDR();
+            //if the user has inserted height and weight, it's possible to calculate the Body Mass Index
             if(heightExists){
 
-                showBMI(mainActivity);
+                showBMI();
+
+                //if the user has inserted the data before + age, it's also possible to calculate the Basal Metabolic Rate
                 if(ageExists){
-                      showBMR(mainActivity);
+                      showBMR();
                 }
             }
         }
     }
 
 
-    public void showHDR(Activity mainActivity){
-        TextView hdrView = (TextView) mainActivity.findViewById(R.id.qnt_agua_text_view);
-        TextView bmiView = (TextView) mainActivity.findViewById(R.id.imc_text_view);
-        showWeight(mainActivity);
-        bmiView.setText("");
+    /**
+     * Calculate and show on the screen user hydration per day
+     */
+    private void showHDR(){
+        TextView hdrView = (TextView) mainActivity.findViewById(R.id.qnt_water_text_view);
+        TextView bmiView = (TextView) mainActivity.findViewById(R.id.bmi_text_view);
+        TextView heightView = (TextView) mainActivity.findViewById(R.id.height_text_view);
+
+        //Show the weight just if the color wasnt set. If was, the method showBMI will call showWeight() itself
+        if(getColorHealthState() == 0){
+            showWeight();
+
+            //Set the bigger Text of feedback to hydration
+            bmiView.setText(mainActivity.getResources().getString(R.string.hydration));
+
+            heightView.setText("");
+        }
+
         this.calculator.calcHDR();
         String hdrString = Person.getStringHDR();
         hdrView.setText(hdrString);
 
     }
-    public void showBMI(Activity mainActivity){
-        showHeight(mainActivity);
-        TextView bmiView = (TextView) mainActivity.findViewById(R.id.imc_text_view);
+
+    /**
+     * Calculate and show on the screen the Body Mass Index
+     */
+    private void showBMI(){
+        TextView bmiView = (TextView) mainActivity.findViewById(R.id.bmi_text_view);
         this.calculator.calcBMI();
+        showHeight();
+        showIdealWeight();
+        showWeight();
         bmiView.setText(Person.getStringBMI());
-        bmiView.setTextSize(48);
+        bmiView.setTextSize(33);
+
+        //Show the health condition
+        FrameLayout line1 = (FrameLayout) mainActivity.findViewById(R.id.bmi_line);
+        //Set the line color under the health condition
+        line1.setBackgroundColor(mainActivity.getResources().getColor(getColorHealthState()));
+        //Set the health condition text color
+        bmiView.setTextColor(mainActivity.getResources().getColor(getColorHealthState()));
     }
-    private void showHeight(Activity mainActivity){
-        TextView heightView = (TextView) mainActivity.findViewById(R.id.altura_text_view);
-        heightView.setText(Person.getStringHeight());
-    }
-    private void showWeight(Activity mainActivity){
-        TextView weightView = (TextView) mainActivity.findViewById(R.id.peso_text_view);
-        weightView.setText(Person.getStringWeight());
-    }
-    public void showBMR(Activity mainActivity){
-        TextView bmrView = (TextView) mainActivity.findViewById(R.id.qnt_calorias_text_view);
+
+    /**
+     * Calculate and show on the screen the Basal Metabolic Rate
+     */
+    private void showBMR(){
+        TextView bmrView = (TextView) mainActivity.findViewById(R.id.qnt_calories_text_view);
         String bmrString = this.calculator.calcBMR();
         bmrView.setText(bmrString);
+        showWeightAdvice();
 
     }
+
+    private void showHeight(){
+        TextView heightView = (TextView) mainActivity.findViewById(R.id.height_text_view);
+        heightView.setText(Person.getStringHeight());
+    }
+
+    private void showWeight(){
+        TextView weightView = (TextView) mainActivity.findViewById(R.id.weight_text_view);
+        weightView.setText(Person.getStringWeight());
+
+
+
+        if(isHigherWeight()||isLowerWeight()){
+            //Check if health color was already set, avoiding nullPointerException
+            if(getColorHealthState() != 0){
+                weightView.setTextColor(mainActivity.getResources().getColor(getColorHealthState()));
+            }
+        }else{
+            weightView.setTextColor(mainActivity.getResources().getColor(R.color.colorTextTabUnselected));
+        }
+
+    }
+
+    private void showIdealWeight(){
+        TextView weightView = (TextView) mainActivity.findViewById(R.id.ideal_weight_text_view);
+        //If the user is above or bellow its healthy weight, show a recommendation
+        if(isHigherWeight()||isLowerWeight()){
+            weightView.setText(Person.getStringIdealWeight());
+        }
+        //if not, do not show anything and erase the content on that TextView
+        else{
+            weightView.setText("");
+        }
+
+    }
+
+    private void showWeightAdvice(){
+        TextView adviceView = (TextView) mainActivity.findViewById(R.id.weight_advice_text_view);
+        FrameLayout line = (FrameLayout) mainActivity.findViewById(R.id.advice_line);
+        line.setBackgroundColor(mainActivity.getResources().getColor(getColorHealthState()));
+
+        //If the user is above or bellow its healthy weight, show a recommendation
+        if(isHigherWeight()||isLowerWeight()){
+            adviceView.setTextSize(18);
+            adviceView.setText(Person.getStringAdviceWeight());
+        }
+        //if not, do not show anything and erase the content on that TextView
+        else{
+            adviceView.setText(Person.getStringAdviceWeight());
+            adviceView.setTextSize(24);
+            adviceView.setTextColor(mainActivity.getResources().getColor(getColorHealthState()));
+        }
+    }
+
     public static boolean ageExists() {
         return ageExists;
     }
@@ -98,4 +175,27 @@ public class HealthController {
         HealthController.weightExists = weightExists;
     }
 
+    public static int getColorHealthState() {
+        return color;
+    }
+
+    public static void setColor(int color) {
+        HealthController.color = color;
+    }
+
+    public static boolean isHigherWeight() {
+        return higherWeight;
+    }
+
+    public static void setHigherWeight(boolean higherWeight) {
+        HealthController.higherWeight = higherWeight;
+    }
+
+    public static boolean isLowerWeight() {
+        return lowerWeight;
+    }
+
+    public static void setLowerWeight(boolean lowerWeight) {
+        HealthController.lowerWeight = lowerWeight;
+    }
 }

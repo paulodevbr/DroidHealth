@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarInterface 
     private void startTabControl(){
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
-        // /Add tabs and their respective text
+        // /Add tabs and their respective title
         tabLayout.addTab(tabLayout.newTab().setText("Perfil"));
         tabLayout.addTab(tabLayout.newTab().setText("Dicas"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -103,6 +103,9 @@ public class MainActivity extends AppCompatActivity implements ToolbarInterface 
         // if this option is selected, the app goes to SettingsActivity
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }else if(id == R.id.information_settings){
+            startActivity(new Intent(this, InformationActivity.class));
             return true;
         }
 

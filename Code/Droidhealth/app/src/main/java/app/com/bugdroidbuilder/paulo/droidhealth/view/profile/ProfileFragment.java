@@ -23,14 +23,20 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.profile_fragment, container, false);
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
+        defineConfigButton();
+    }
+
+    /**
+     * create a listener to a "insert data" button, that goes directly to SettingsActivity
+     */
+    private void defineConfigButton(){
         Button btConfig = (Button) getActivity().findViewById(R.id.bt_go_settings);
 
-        //create a listener to a "insert data" button, that goes directly to SettingsActivity
         btConfig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

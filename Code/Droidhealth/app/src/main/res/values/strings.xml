@@ -8,21 +8,33 @@
     <string name="idade_unit">anos</string>
 
 
-    <string name="title_configuracoes">Configurações</string>
-    <string name="title_informação">Informação</string>
+    <string name="title_settings">Configurações</string>
+    <string name="title_information">Informação</string>
 
+<string name="information_overview">
+    <b>Informações relevantes</b>\n\n
+
+    O aplicativo utiliza os seguintes conceitos para conseguir <b>informações aproximadas</b> da saúde o usuário. <b>Para melhores diagnósticos, procure um médico.</b>
+
+</string>
 
     <string name="bmi_overview">
-        O Índice de Massa Corporal(BMI) é um cálculo que foi desenvolvido com o objetivo de saber rapidamente o weight ideal de uma pessoa.
+        <b>Índice de Massa Corporal(BMI)</b>\n\n
+        É um cálculo que foi desenvolvido com o objetivo de saber rapidamente o peso ideal de uma pessoa.\n
 
     </string>
 
     <string name="bmr_overview">
-        O Índice de Metabolismo Basal(BMR) é um cálculo aproximado das calorias que uma pessoa precisa diariamente.
+        <b>Índice de Metabolismo Basal(BMR)</b>\n\n
+
+        É um cálculo aproximado das calorias que uma pessoa precisa diariamente.\n
+
+
     </string>
 
-    <string name="hdr_overview">
-        Cálculo do consumo de água diário: pode variar caso a pessoa pratique exercícios físicos.
+
+     <string name="hydration">
+        Hidratação
     </string>
 
 

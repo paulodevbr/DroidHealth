@@ -31,21 +31,19 @@ public class PreferencesDAO {
 
             editor.putBoolean("weightExists", HealthController.weightExists());
             editor.putFloat("weight", Person.getWeight());
-            editor.putFloat("hdr", Person.getHDR());
+            editor.putString("gender", Person.getGender());
+            editor.putString("qntPhysicalExerc", Person.getQntPhysicalActivies());
 
             if(HealthController.heightExists()) {
 
                 editor.putBoolean("heightExists", HealthController.heightExists());
                 editor.putFloat("height", Person.getHeight());
-                editor.putFloat("bmi", Person.getBMI());
 
-                if(HealthController.heightExists()) {
+                if(HealthController.ageExists()) {
 
                     editor.putBoolean("ageExists", HealthController.ageExists());
                     editor.putInt("age", Person.getAge());
-                    editor.putString("gender", Person.getGender());
-                    editor.putString("qntPhysicalExerc", Person.getQntPhysicalActivies());
-                    editor.putFloat("bmr", Person.getBMR());
+
 
                 }
             }
@@ -65,23 +63,20 @@ public class PreferencesDAO {
         if(weightExists){
             HealthController.setWeightExists(true);
             Person.setWeight(settings.getFloat("weight", 0));
-            Person.setHDR(settings.getFloat("hdr", 0));
-
+            Person.setGender(settings.getString("gender", null));
+            Person.setQntPhysicalActivies(settings.getString("qntPhysicalExerc",null));
             boolean heightExists = settings.getBoolean("heightExists", false);
 
             if(heightExists){
                 HealthController.setHeightExists(true);
                 Person.setHeight(settings.getFloat("height", 0));
-                Person.setBMI(settings.getFloat("bmi", 0));
 
                 boolean ageExists = settings.getBoolean("ageExists", false);
 
                 if(ageExists){
                     HealthController.setAgeExists(true);
                     Person.setAge(settings.getInt("age", 0));
-                    Person.setGender(settings.getString("gender", null));
-                    Person.setQntPhysicalActivies(settings.getString("qntPhysicalExerc",null));
-                    Person.setBMR(settings.getFloat("bmr", 0));
+
                 }
             }
         }

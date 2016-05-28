@@ -15,8 +15,8 @@ public class HealthController {
     private static boolean heightExists = false;
     private static boolean ageExists = false;
 
-    private static boolean higherWeight = false;
-    private static boolean lowerWeight = false;
+    private static boolean higherWeight;
+    private static boolean lowerWeight;
     private Activity mainActivity;
     private static int color = 0;
 
@@ -61,7 +61,7 @@ public class HealthController {
             heightView.setText("");
         }
 
-        this.calculator.calcHDR();
+        this.calculator.calcHDR(Person.getWeight());
         String hdrString = Person.getStringHDR();
         hdrView.setText(hdrString);
 
@@ -72,14 +72,15 @@ public class HealthController {
      */
     private void showBMI(){
         TextView bmiView = (TextView) mainActivity.findViewById(R.id.bmi_text_view);
-        this.calculator.calcBMI();
+        this.calculator.calcBMI(Person.getWeight(), Person.getHeight());
         showHeight();
         showIdealWeight();
         showWeight();
+        //Show the health condition
         bmiView.setText(Person.getStringBMI());
         bmiView.setTextSize(33);
 
-        //Show the health condition
+
         FrameLayout line1 = (FrameLayout) mainActivity.findViewById(R.id.bmi_line);
         //Set the line color under the health condition
         line1.setBackgroundColor(mainActivity.getResources().getColor(getColorHealthState()));
@@ -92,7 +93,7 @@ public class HealthController {
      */
     private void showBMR(){
         TextView bmrView = (TextView) mainActivity.findViewById(R.id.qnt_calories_text_view);
-        String bmrString = this.calculator.calcBMR();
+        String bmrString = this.calculator.calcBMR(Person.getWeight(), Person.getHeight(), Person.getAge());
         bmrView.setText(bmrString);
         showWeightAdvice();
 

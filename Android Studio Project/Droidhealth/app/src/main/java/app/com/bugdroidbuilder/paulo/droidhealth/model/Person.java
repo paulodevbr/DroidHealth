@@ -15,7 +15,6 @@ public class Person {
     private static float BMR;//Basal Metabolic Rate
     private static float HDR;//hydration per day
     private static int idealWeight;
-    private static int difIdealWeight;
 
 
     private static StringBuilder gender, qntPhysicalActivies, stringHDR, stringWeight, stringIdealWeight,
@@ -26,21 +25,26 @@ public class Person {
     }
 
     public static void setAdviceWeight(int calories) {
-        if(HealthController.isLowerWeight()){
+        if (HealthController.isLowerWeight()) {
             Person.stringAdviceWeight = new StringBuilder().append("Para ganhar peso: ")
                     .append(calories).append(" kcal/dia");
 
-        }else if (HealthController.isHigherWeight()){
+        } else if (HealthController.isHigherWeight()) {
             Person.stringAdviceWeight = new StringBuilder().append("Para perder peso: ")
                     .append(calories).append(" kcal/dia");
-        }else{
-            Person.stringAdviceWeight = new StringBuilder().append("Parabens, continue assim! ");
+        } else if ( !HealthController.isLowerWeight()&&!HealthController.isHigherWeight()){
+            Person.stringAdviceWeight = new StringBuilder().append("Parabéns, continue assim!");
         }
 
     }
 
     public static String getStringAdviceWeight() {
-        return stringAdviceWeight.toString();
+
+        try{
+            return Person.stringAdviceWeight.toString();
+        }catch (NullPointerException e){
+            return "Parabens, continue assim !";
+        }
     }
 
     public static String getStringWeight() {
@@ -56,9 +60,7 @@ public class Person {
         return Person.stringIdealWeight.toString();
     }
 
-    public static void setDifIdealWeight(int dif) {
-        Person.difIdealWeight = dif;
-    }
+
 
     public static String getStringHeight() {
         return stringHeight.toString();
@@ -97,9 +99,6 @@ public class Person {
         Person.qntPhysicalActivies = new StringBuilder().append(qntPhysicalActivies);
     }
 
-    public static float getHDR() {
-        return HDR;
-    }
 
     public static void setHDR(float HDR) {
         Person.HDR = HDR;
@@ -110,13 +109,6 @@ public class Person {
         return Person.stringHDR.toString();
     }
 
-    public static void setStringHDR(String qntWater) {
-        Person.stringHDR = new StringBuilder().append(qntWater);
-    }
-
-    public static float getBMI() {
-        return BMI;
-    }
 
     public static void setBMI(float BMI) {
         Person.BMI = BMI;
@@ -135,22 +127,14 @@ public class Person {
         return stringBMR.toString();
     }
 
-    public static int getIdealWeight() {
-        return idealWeight;
-    }
-
-
-
     public static String getStringBMI() {
         return stringBMI.toString();
     }
 
-    public static void setStringBMI(String stringBMI) {
+    public static void setHealthCondition(String stringBMI) {
         Person.stringBMI = new StringBuilder().append(stringBMI);
     }
-    public static void setStringBMR(String stringBMR) {
-        Person.stringBMR = new StringBuilder().append(stringBMR);
-    }
+
 
     public static void setWeight(float gainWeightCalories) {
         Person.weight = (int) gainWeightCalories;

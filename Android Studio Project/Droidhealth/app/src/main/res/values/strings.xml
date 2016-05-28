@@ -9,12 +9,12 @@
 
 
     <string name="title_settings">Configurações</string>
-    <string name="title_information">Informação</string>
+    <string name="title_information">Informações</string>
 
 <string name="information_overview">
     <b>Informações relevantes</b>\n\n
 
-    O aplicativo utiliza os seguintes conceitos para conseguir <b>informações aproximadas</b> da saúde o usuário. <b>Para melhores diagnósticos, procure um médico.</b>
+    O aplicativo utiliza os seguintes conceitos para conseguir <b>informações aproximadas</b> da saúde o usuário. Para melhores diagnósticos, <b>procure um médico.</b>
 
 </string>
 

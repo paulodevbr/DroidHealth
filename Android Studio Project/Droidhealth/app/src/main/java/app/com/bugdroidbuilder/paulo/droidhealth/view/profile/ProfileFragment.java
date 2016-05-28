@@ -29,6 +29,7 @@ public class ProfileFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         defineConfigButton();
+
     }
 
     /**

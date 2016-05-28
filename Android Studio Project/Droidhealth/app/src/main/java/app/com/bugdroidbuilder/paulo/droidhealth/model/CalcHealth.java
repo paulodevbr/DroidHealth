@@ -15,9 +15,8 @@ public final class CalcHealth {
     /** Calculate the hydration per day according to user weight
      *
      */
-    public void calcHDR(){
-        float peso = Person.getWeight();
-        double resultWater = peso * 0.035;
+    public void calcHDR(float weight){
+        double resultWater = weight * 0.035;
         Person.setHDR((float)resultWater);
 
     }
@@ -25,27 +24,22 @@ public final class CalcHealth {
     /** Calculate the Body Mass Index and return the health condition
      *
      */
-    public void calcBMI(){
+    public void calcBMI(float weight, float height){
         //calculate BMI, and height is divided by 100 because is needed to be in meters
-        float weight = Person.getWeight();
-        float height = Person.getHeight();
         height = height/100;
         double bmi = weight/(Math.pow((height), 2));
         // calculate the ideal weight and store it in class Person
-        Person.setDifIdealWeight(calcKgToIdealWeight());
+       calcToIdealWeight(Person.getHeight());
         Person.setBMI((float)bmi);
-        Person.setStringBMI(returnHealthCondition(bmi));
+        Person.setHealthCondition(returnHealthCondition(bmi));
     }
 
 
-    public int calcKgToIdealWeight(){
+    public void calcToIdealWeight(float height){
         //calculate the ideal weight based in BMI
         //return how many kg is needed to gain or lose, to achieve the ideal weight
-        float height = Person.getHeight();
         height = height/100;
         Person.setIdealWeight((int)((Math.pow((height), 2) * 23)));
-
-        return (int)(Person.getIdealWeight() - Person.getWeight());
     }
 
     /** Verify the Body Metabolic Index result and return the health condition
@@ -106,13 +100,11 @@ public final class CalcHealth {
      *
      * @return Basal Metabolic Rate ready to be shown
      */
-    public String calcBMR(){
-        float weight = Person.getWeight();
-        float height = Person.getHeight();
-        float age = Person.getAge();
+    public String calcBMR(float weight,float height,float age){
+
         String gender = Person.getGender();
         double bmr;
-        double qntPhysicalAct = checkQntPhysicalAct();
+        double qntPhysicalAct = checkQntPhysicalAct(Person.getQntPhysicalActivies());
 
         switch(gender){
 
@@ -139,20 +131,19 @@ public final class CalcHealth {
      *
      * @return a value to calculate BMR according to the frequency of physical activities
      */
-    public double checkQntPhysicalAct() {
-        String qntExercString = Person.getQntPhysicalActivies();
+    public double checkQntPhysicalAct(String qntExercString) {
         double valQntExerc = 0;
         switch (qntExercString){
             case "Sedentário":
                 valQntExerc = 1.2;
                 break;
-            case "Exercícios leves (1 a 3 dias por semana)":
+            case "1 a 3 dias por semana":
                 valQntExerc = 1.55;
                 break;
-            case "Exercícios intensos (6 a 7 dias por semana)":
+            case "6 a 7 dias por semana":
                 valQntExerc = 1.725;
                 break;
-            case "Exercícios intensos diariamente":
+            case "Intensos diariamente":
                 valQntExerc =1.9;
                 break;
             default:
@@ -162,26 +153,34 @@ public final class CalcHealth {
         return valQntExerc;
     }
     // Verify if the user needs to lose or gain weight
-    public void checkWeightState(){
+    private void checkWeightState(){
         if(HealthController.isLowerWeight()){
             calcCaloriesToGainWeight();
         }else if(HealthController.isHigherWeight()) {
             calcCaloriesToLoseWeight();
-        }else Person.setAdviceWeight(0);
+        }else if(!HealthController.isLowerWeight() && !HealthController.isHigherWeight()){
+            caloriesHealthy();
+        }
     }
 
-    public void calcCaloriesToLoseWeight(){
+    // calculate calories per day to lose weight
+    private void calcCaloriesToLoseWeight(){
         int calories = 0;
         float bmr = Person.getBMR();
         calories =(int) (bmr * 0.75);
         Person.setAdviceWeight(calories);
     }
-
-    public void calcCaloriesToGainWeight(){
+    // calculate calories per day to gain weight
+    private void calcCaloriesToGainWeight(){
         int calories = 0;
         float bmr = Person.getBMR();
         calories =(int) (bmr * 1.15);
         Person.setAdviceWeight(calories);
+    }
+
+    // for healthy people, set gain/lose of calories to 0
+    private void caloriesHealthy(){
+        Person.setAdviceWeight(0);
     }
 
 
